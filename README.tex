@@ -1,0 +1,196 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{calculator}
+\usepackage{tabularx}
+\usepackage[textwidth=528pt]{geometry}
+
+\begin{document}
+\title{Formula 1 accident calculations via Monte Carlo on first straigt + turn}
+\maketitle
+
+\section{Acceleration speed}
+
+``\textbf{0-100 kph} is a very tricky measure to be precise with, because the sheer amount of power makes it very difficult to get good traction and therefore know how fast a machine's been. The F1 car wants to spin up and the MotoGP bike just cannot keep the front wheel on the ground. However, at this point both machines perform alike, achieving a measure of around \textbf{2.6 seconds}. \\
+
+\noindent
+\textbf{0-200 kph} is MotoGP territory. At around 180 kph the electronics take full control in the F1 car, while the MotoGP rider can still work on the throttle. The F1 does it in \textbf{5.2 seconds}, but it's 4.8s for the motorcycle. \\
+
+\noindent
+\textbf{0-300 kph}. Here the MotoGP needs 11.8 seconds, but the single-seater just \textbf{10.6s}.''\\
+\url{https://www.redbull.com/ca-en/motogp-repsol-honda-team-f1-red-bull-racing-2015} \\
+
+Example calculations: \\
+\line(1.0){450} \\
+
+% 100 kph, use 3.6 to convert to ms
+\DIVIDE{100}{3.6}{\msa}
+v = $\frac{100kph}{3.6}=\msa ms$\\
+
+% 2.6 s, time needed for 0-100
+\def\time{2.6}
+\DIVIDE{\msa}{\time}{\aa}
+a = $\frac{\Delta v}{\Delta t} = \frac{\msa}{\time} = \aa ms^2$\\
+
+% calculate distance for calculated acceleration and time
+\SQUARE{\time}{\square}
+\MULTIPLY{\aa}{\square}{\tmp}
+\MULTIPLY{0.5}{\tmp}{\ma}
+s = $\frac{1}{2} at^2 = \frac{1}{2} * \aa * \time^2 = \ma m $\\
+
+% distance per second, linear accelerated
+\DIVIDE{\ma}{\time}{\lms}
+$\ma m / \time s = \lms m/s$\\
+
+\line(1,0){450} \\
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DIVIDE{200}{3.6}{\msb}
+\def\time{2.6}
+\SUBTRACT{\msb}{\msa}{\s}
+\DIVIDE{\s}{\time}{\ab}
+\SQUARE{\time}{\square}
+\MULTIPLY{\ab}{\square}{\tmp}
+\MULTIPLY{0.5}{\tmp}{\mb}
+\DIVIDE{\mb}{\time}{\lms}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DIVIDE{300}{3.6}{\msc}
+\def\time{5.4}
+\SUBTRACT{\msc}{\msb}{\s}
+\DIVIDE{\s}{\time}{\ac}
+\SQUARE{\time}{\square}
+\MULTIPLY{\ac}{\square}{\tmp}
+\MULTIPLY{0.5}{\tmp}{\mc}
+\DIVIDE{\mc}{\time}{\lms}
+
+\noindent
+Onboard example start: \url{https://www.youtube.com/watch?v=p_lMtLdCjAI} \\
+
+\noindent
+\begin{tabular}{l l l l l}
+speed (kph) & time (s) & interval (s) & a (ms^2) & distance (1s)\\
+ \hline
+ 0-100 & 2.6 & 2.6 & \aa & \ma \\
+ 0-200 & 5.2 & 2.6 & \ab & \mb \\
+ 0-300 & 10.6 & 5.4 & \ac & \mc \\
+\end{tabular} \\
+
+\subsection{Extra numbers (0-100 kph = 27.7777778 ms)}
+
+\begin{tabular}{lll}
+ name & time (s) & a (ms^2)\\
+ \hline
+ Ferrari & 2.48 & 11.20071 \\
+ Mercedes & 2.48 & 11.20071 \\
+ Mercedes & 2.68 & 10.36484 \\
+ McLaren & 2.8 & 9.92063 \\
+ RedBull & 2.84 & 9.78090 \\
+\end{tabular} \\
+
+\noindent
+\url{https://www.youtube.com/watch?v=zOhAIsLdRpk}
+
+\section{Circuits}
+
+\begin{tabularx}{.6\textwidth}{Xlllllllll}
+Nr.	& Date	       & Circuit	                          & Country    & Turn & Pole  &Distance &Brake &Gear &Speed\\
+\hline
+1	  & 24-26 March	 & Albert Park Circuit	              & Australia  & R&L       & 381m &100 & 4 & 150\\
+2	  & 7-9 April	   & Shanghai International Circuit     & China      & R&L       & 324.7 &50 & 5 & 170\\
+3	  & 14-16 April	 & Bahrain International Circuit	    & Bahrain    & R&L       & 476.4 &100 & 2 & 70\\
+4	  & 28-30 April	 & Sochi International Street Circuit & Russia     & R&R       & 205.2 &- & 8 & 300\\
+5	  & 12-14 May	   & Catalunya Circuit	                & Spain      & R&L       & 690.5 &100 & 3 & 130\\
+6	  & 25-28 May	   & Monaco Circuit	                    & Monaco     & R&R       & 111 &75 & 3 & 103\\
+7	  & 9-11 June	   & Circuit Gilles Villeneuve	        & Canada     & R&L       & 258 &125 & 4 & 154 \\
+8	  & 23-25 June	 & Baku street circuit	              & Azerbaijan & L&R       & 206 &50 & 3 & 116\\
+9	  & 7-9 July	   & Red Bull Ring (A1-Ring)	          & Austria    & R&L       & 318 &200 & 3 & 122\\
+10	& 14-16 July	 & Silverstone Circuit	              & Great Britain & R&L    & 270 &- & 8 & 281\\
+11	& 28-30 July	 & Hungaroring	                      & Hungary    & R&L       & 576 &100 & 2 & 85\\
+12	& 25-27 Aug	   & Spa Francorchamps Circuit	        & Belgium    & R&L       & 251 &150 & 3 & 77\\
+13	& 1-3 Sep	     & Autodromo Nazionale Monza	        & Italy      & R&L       & 615 &125 & 2 & 80\\
+14	& 15-17 Sep	   & Singapore Circuit	                & Singapore  & L&L       & 274 &50 & 4 & 126\\
+15	& 29 Sep 1 Okt & Sepang International Circuit	      & Malaysia   & R&L       & 620 &100 & 2 & 74\\
+16	& 6-8 Oct	     & Suzuka Circuit	                    & Japan      & R&L       & 373 &10 & 7 & 134\\
+17	& 20-22 Oct	   & Circuit of The Americas	          & USA        & L&R       & 364 &100 & 2 & 86\\
+18	& 27-29 Oct	   & Autodromo Hermanos Rodriguez	      & Mexico     & R&L       & 890 &200 & 3 & 107\\
+19	& 10-12 Nov	   & Autodromo Interlagos	              & Brazil     & L&R       & 334 &50 & 3 & 109\\
+20	& 24-26 Nov	   & Yas Marina Circuit	                & UAE        & L&R       & 305 &50 & 3 & 150\\
+\end{tabularx}
+
+\subsection{Circuit information}
+7.3 Width
+When planning new permanent circuits, the track width foreseen should be at least 12 m. Where the track width changes, the transition should be made as gradually as possible, at a rate not greater than 1 m in 20 m total width. The width of the starting grid should be at least 15 m; this width must be maintained through to the exit of the  rst corner (as indicated by the racing line). \\
+
+\href{appendix\_o\_-\_procedures\_for\_the\_recognition\_of\_motor\_racing\_circuits\_-\_2017.pdf}\\
+
+\noindent
+35.4 The grid will be in a staggered 1 x 1 formation and the rows on the grid will be separated by 16 metres.\\
+
+\href{4.\_formula\_one\_-\_sporting_regulations\_-\_2017.pdf}\\
+
+\subsection{Links: (Virtual) Circuit guide's \& Birds Eye Views}
+
+\begin{tabularx}{.6\textwidth}{Xll}
+1 & https://www.youtube.com/watch?v=h6KqNHLD-Ro & https://www.youtube.com/watch?v=RMFApHXuZY0 \\
+2 & https://www.youtube.com/watch?v=mVlRAJEJedc & https://www.youtube.com/watch?v=mWssZV_tZHU \\
+3 & https://www.youtube.com/watch?v=Dl3Ua-PwlJ8 & https://www.youtube.com/watch?v=ZpZHQaPMrS4 \\
+4 & https://www.youtube.com/watch?v=8v5nWH5hC68 & https://www.youtube.com/watch?v=eoZydq_Kxts \\
+5 & https://www.youtube.com/watch?v=upE6lOvOuRo & https://www.youtube.com/watch?v=_2afk1EQzKs \\
+6 & https://www.f1fanatic.co.uk/f1-information/going-to-a-race/monte-carlo-circuit-information/ & https://www.youtube.com/watch?v=9LeDKOU_5JA \\
+7 & https://www.youtube.com/watch?v=nhiWtGP38k0 & https://www.youtube.com/watch?v=mndUvlo1jgw \\
+8 & https://www.youtube.com/watch?v=GONa9mfmhzo & https://www.youtube.com/watch?v=f2pg_zlzQjI \\
+9 & https://www.youtube.com/watch?v=V48O2eYgxQ4 & https://www.youtube.com/watch?v=6DvhuytrTFA \\
+10 & https://www.youtube.com/watch?v=QVkN3z33HBM & https://www.youtube.com/watch?v=7V7jA3Nzq1k \\
+11 & https://www.youtube.com/watch?v=-yj44ATHoYs & https://www.youtube.com/watch?v=F7ugIrMcebE \\
+12 & https://www.youtube.com/watch?v=jrRQgO1g9Bs & https://www.youtube.com/watch?v=B-vpvlFRS2o \\
+13 & https://www.youtube.com/watch?v=KvzTBeBMy5s & https://www.youtube.com/watch?v=gbvpecmUMcw \\
+14 & https://www.youtube.com/watch?v=93L5lbDa2ig & https://www.youtube.com/watch?v=N08jJ7oKNRM \\
+15 & https://www.youtube.com/watch?v=3s76rtsS8sg & https://www.youtube.com/watch?v=1k89YKvKNnk \\
+16 & https://www.youtube.com/watch?v=01JljU8rGkg & https://www.youtube.com/watch?v=lAJi-YRdBCo \\
+17 & https://www.youtube.com/watch?v=N1C4sTUZzKo (2016) & https://www.f1fanatic.co.uk/f1-information/going-to-a-race/circuit-americas-track-information/ https://www.youtube.com/watch?v=9OPaGomBfBg \\
+18 & https://www.youtube.com/watch?v=9pK6Cufuel0 (2016) & https://www.f1fanatic.co.uk/f1-information/going-to-a-race/autodromo-hermanos-rodriguez-circuit-information/ https://www.youtube.com/watch?v=C0lksTAZv8M \\
+19 & https://www.youtube.com/watch?v=LAV9TlKIzK8 (2016) & https://www.f1fanatic.co.uk/f1-information/going-to-a-race/autodromo-jose-carlos-pace-carlos-pace-interlagos-circuit-information/ https://www.youtube.com/watch?v=bylr0ot6O9Y \\
+20 & https://www.youtube.com/watch?v=LAXWZbSp0z4 (2016) & https://www.f1fanatic.co.uk/f1-information/going-to-a-race/yas-island-abu-dhabi-circuit-information/ https://www.youtube.com/watch?v=2keXwjlO-3g \\
+\end{tabularx}
+
+\subsection{Accidents}
+\begin{tabular}{llll}
+Nr.	& Turn width & Link & Accidents 1st straight/turn \\
+\hline
+1 & 2 &  https://www.youtube.com/watch?v=R3cfJCOSq8Q & - \\
+2 & 2 &  https://www.youtube.com/watch?v=MFH38CL1Ots & - \\
+3 & 2 &  https://www.youtube.com/watch?v=6yXvIbKXehw & - \\
+4 & 3 &  https://www.youtube.com/watch?v=xtHtegExhXY & - \\
+5 & 3 &  https://www.youtube.com/watch?v=KS2BUVrDNTI & touch resulting in stops \\
+6 & 2 &  https://www.youtube.com/watch?v=MzQ8CzXRO8A & - \\
+7 & 2 &  https://www.youtube.com/watch?v=YwL19BaHY2w & touch \\
+8 & 2 &  https://www.youtube.com/watch?v=zP3WOVR1-YU & spin \\
+9 & 2 &  https://www.youtube.com/watch?v=uTg4XAiAnh8 & crash \\
+10 & 2 &  https://www.youtube.com/watch?v=t0WHNqwDjXc & - \\
+11 & 3 &  https://www.youtube.com/watch?v=pU72heP0uH0 & touch \\
+12 & 2 &  https://www.youtube.com/watch?v=rhmGaCjpoBY & - \\
+13 & 2 &  https://www.youtube.com/watch?v=1LOPzsVsaA0 & grass \\
+14 & 2 &  https://www.youtube.com/watch?v=wAOMOmsqpUY & crash \\
+15 & 3 &  https://www.youtube.com/watch?v=02ekLWzzU5s & little touch \\
+16 & 2 &  https://www.youtube.com/watch?v=F4T97cQm2iE & touch \\
+\end{tabular}
+
+\section{Car + behaviour}
+
+\subsection{Overtaking}
+20.4 Any driver defending his position on a straight, and before any braking area, may use the full width of the track during his first move, provided no significant portion of the car attempting to pass is alongside his. Whilst defending in this way the driver may not leave the track without justifiable reason.\\
+
+\noindent
+20.3 More than one change of direction to defend a position is not permitted.\\
+\noindent
+\url{https://f1metrics.wordpress.com/2014/08/28/the-rules-of-racing/}
+
+\subsection{Car}
+3.2.2 Width. The overall width of the car, excluding tyres, must not exceed 2000mm with the steered wheels in the straight ahead position.\\
+\noindent
+\href{3.\_formula\_one\_-\_technical\_regulations\_-\_2017.pdf}\\
+
+\noindent
+Length: +- 5000mm \url{https://www.f1technical.net/forum/viewtopic.php?t=25999}
+
+Change "lanes"; approximately 2 (max) per second
+
+\end{document}
