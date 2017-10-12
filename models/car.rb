@@ -10,52 +10,66 @@ class Car
 
   def move(car, cars, circuit, sec)
     @car, @cars, @circuit, @sec = car, cars, circuit, sec
-    @m = m
+    @m, @speed = m, speed
     return if sec.zero?
 
     switch_rows
+    brake
     accelerate
   end
 
   def switch_rows
-    return unless want_move(next_row)
-    return unless can_move(next_row)
-    @row += next_row.to_i
+    if no_space(next_row)
+      puts "NOSPACE"
+    else
+      @row += next_row
+    end
   end
 
   def next_row
-    if circuit.turn.side == 'R'
-      return -1 if row > 0 # NOTE: maybe switch this to 0.5?
-    else
-      return 1 if row < 5
+    faster || defend || (improve_row_position if m > 100) || 0
+  end
+
+  def improve_row_position
+    next_row = best_row.zero? ? - switch_row : switch_row
+    next_row unless (row + next_row < 0) || (row + next_row) > 4
+  end
+
+  def faster
+    return false unless car_in_front && car.velocity > car_in_front.velocity
+
+    # if car is faster than car_in_front, but closer to best_row, move to it.
+    if (best_row - row).abs < (best_row - car_in_front.row).abs
+      improve_row_position
+    elsif row == car_in_front.row
+      next_row = best_row.zero? ? switch_row : - switch_row
+    next_row unless (row + next_row < 0) || (row + next_row) > 4
     end
-    0
   end
 
-  def want_move(next_row)
-    return true if position.zero?
-    same_rows = (car.row + next_row) == car_in_front.row
-    faster = car_in_front.velocity <= car.velocity
-    return true if !same_rows && faster
+  def defend
+    return unless car_in_back && car_in_back.velocity > car.velocity
+    next_row = car_in_back.row > row ? switch_row : - switch_row
+    next_row unless (row + next_row < 0) || (row + next_row) > 4
   end
 
-  def can_move(next_row)
+  def no_space(next_row)
     if car_in_front
-      # car.m should be smaller than the back of the car in the front (minus its velocity)
-      same_rows = (car.row + next_row) == car_in_front.row
-      to_close = car.m < (car_in_front.m - car_in_front.velocity - car_in_front.length)
-
-      return false if same_rows && to_close
+      same_rows = (row + next_row) == car_in_front.row
+      to_close = m < (car_in_front.m - car_in_front.velocity - length)
+      return true if same_rows && to_close
+    elsif car_in_back
+      same_rows = (row + next_row) == car_in_back.row
+      to_close = (m - length) < car_in_back.m
+      return true if same_rows && to_close
     end
+  end
 
-    if car_in_back
-      # back of the car should be greater than front of car in the back
-      same_rows = (car.row + next_row) == car_in_back.row
-      to_close = (car.m - car.length) > car_in_back.m
-
-      return false if same_rows && to_close
-    end
-    true
+  def brake
+    return if m < (circuit.turn.distance - circuit.turn.brake_at)
+    a = (car_json[:acceleration] / 2) - (circuit.turn.speed / 3.6)
+    @brake_speed ||= a / circuit.turn.brake_at
+    @velocity += @brake_speed
   end
 
   def car_in_front
@@ -71,10 +85,15 @@ class Car
   def accelerate
     @m += velocity
     @m.round(2)
+    @speed += velocity
   end
 
   def m
     @m ||= -(position * 8)
+  end
+
+  def last_row
+    @last_row ||= row
   end
 
   def row
@@ -85,18 +104,23 @@ class Car
     position.even? ? 1 : 3
   end
 
+  def best_row
+    circuit.turn.side == 'L' ? 0 : 4
+  end
+
   def position
     @cars.index @car
   end
 
   def velocity
-    car_json[:acceleration] / 2
+    @velocity ||= car_json[:acceleration] / 2.0
   end
 
   def speed
-    sec * velocity * 3.6 # km/h
+    @speed ||= sec * velocity * 3.6 # km/h
   end
 
   def length; 5 end
   def width; 2 end
+  def switch_row; 1 end
 end

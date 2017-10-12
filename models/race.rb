@@ -15,17 +15,17 @@ class Race
 
   def start
     f = Drawille::FlipBook.new
+    puts cars.map {|x| x.car_json}
 
     (0..60).to_a.map do |sec|
       move(cars, sec)
-      c = Drawille::Canvas.new
-      puts visualize(cars, c, f)
+      puts visualize(cars, f)
+      text_output(cars, sec)
       next if sec.zero?
       @cars = cars.sort_by(&:m).reverse
     end
 
-    f.play repeat: false, fps: 2
-    puts 'okedaag'
+    f.play repeat: false, fps: 24
   end
 
   def move(cars, sec)
@@ -34,8 +34,18 @@ class Race
     end
   end
 
-  def visualize(cars, c, f)
+  def text_output(cars, sec)
+    puts "_______ #{sec} _______"
+    cars.map do |car|
+      puts "#{car.position}: #{car.m.round}m, #{car.row.round}, #{car.velocity}"
+    end
+  end
+
+  def visualize(cars, f)
+    c = Drawille::Canvas.new
+
     circuit_ = circuit
+
     c.paint do
       distance = circuit_.turn.distance
       brake_at = distance - circuit_.turn.brake_at
@@ -45,7 +55,7 @@ class Race
       line from: [11, brake_at], to: [20, brake_at]
 
       cars.sort_by(&:m).reverse.map do |car|
-        x = (car.row * 2); y = car.m.round;
+        x = (car.row.round * 2); y = car.m.round;
         x2 = (x + car.width); y2 = (y + car.length)
 
         mv(x,y); down; mv((x + car.width),y); mv(x2,y2); mv(x,y2); mv(x,y); up
@@ -56,7 +66,7 @@ class Race
   end
 
   def cars
-    @cars ||= cars_json[:cars].map { |car| Car.new(car_json: car) }
+    @cars ||= cars_json[:cars][0..20].map { |car| Car.new(car_json: car) }
   end
 
   def circuit

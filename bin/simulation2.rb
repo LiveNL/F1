@@ -6,9 +6,10 @@ def load(json)
   MultiJson.load File.open("./configs/#{json}.json").read, symbolize_keys: true
 end
 
-cars = load('cars')
+cars = load('cars2')
 circuits = load('circuits')
 
+belgium = circuits[:circuits].find{|x| x[:country] == "Belgium"}
 australia = circuits[:circuits].first
-race = Race.new(circuit_json: australia, cars_json: cars)
+race = Race.new(circuit_json: belgium, cars_json: cars)
 race.start
