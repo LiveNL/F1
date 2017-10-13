@@ -9,7 +9,11 @@ end
 cars = load('cars2')
 circuits = load('circuits')
 
-belgium = circuits[:circuits].find{|x| x[:country] == "Belgium"}
-australia = circuits[:circuits].first
-race = Race.new(circuit_json: belgium, cars_json: cars)
-race.start
+circuits[:circuits].map do |circuit|
+  puts "#CIRCUIT: #{circuit[:country]}"
+
+  10.times do |x|
+    Race.new(circuit_json: circuit, cars_json: cars).start(x)
+  end
+end
+

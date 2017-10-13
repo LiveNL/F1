@@ -1,29 +1,46 @@
 #!/usr/bin/env ruby
+require 'colorize'
 
 class Car
-  attr_reader :car_json, :car, :cars, :circuit, :sec
+  attr_reader :car_json, :car, :cars, :circuit, :sec, :x
   attr_writer :m, :row
 
   def initialize(car_json:)
     @car_json = car_json
   end
 
-  def move(car, cars, circuit, sec)
-    @car, @cars, @circuit, @sec = car, cars, circuit, sec
-    @m, @speed = m, speed
+  def move(car, cars, circuit, sec, x)
+    @car, @cars, @circuit, @sec, @x = car, cars, circuit, sec, x
+    @m, @speed, @crash = m, speed, crash
     return if sec.zero?
+    return if @crash == true
 
     switch_rows
-    brake
+    brake if m < circuit.turn.distance
     accelerate
   end
 
   def switch_rows
     if no_space(next_row)
-      puts "NOSPACE"
+#      return unless braking_zone
+      if car_in_front && (car_in_front.m - car_in_front.velocity - length) - m > 1.5
+        brake
+      else
+        if rand > 0.5
+          @crash = true
+          File.open("crashes.txt", 'a') { |file| file.write("#{x}:#{sec}:#{position}: #{car_json[:driver]}, #{circuit.country}\n") }
+          return
+        else
+          brake
+        end
+      end
     else
       @row += next_row
     end
+  end
+
+  def crash
+    @crash ||= false
   end
 
   def next_row
@@ -66,10 +83,15 @@ class Car
   end
 
   def brake
-    return if m < (circuit.turn.distance - circuit.turn.brake_at)
+    return unless braking_zone
+    return if @velocity <= 1
     a = (car_json[:acceleration] / 2) - (circuit.turn.speed / 3.6)
     @brake_speed ||= a / circuit.turn.brake_at
     @velocity += @brake_speed
+  end
+
+  def braking_zone
+     m > (circuit.turn.distance - circuit.turn.brake_at)
   end
 
   def car_in_front

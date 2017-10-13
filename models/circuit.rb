@@ -13,6 +13,10 @@ class Circuit
     circuit_json[:pole]
   end
 
+  def country
+    circuit_json[:country]
+  end
+
   def width
     15
   end
