@@ -6,42 +6,45 @@ require_relative '../models/circuit'
 require_relative '../models/car'
 
 class Race
-  attr_reader :circuit_json, :cars_json
+  attr_reader :circuit_json, :cars_json, :x, :rng
 
-  def initialize(circuit_json:, cars_json:)
+  def initialize(circuit_json:, cars_json:, x:, rng:)
     @circuit_json = circuit_json
     @cars_json = cars_json
+    @x = x
+    @rng = rng
   end
 
-  def start(x)
+  def start
     f = Drawille::FlipBook.new
-#    puts cars.map {|x| x.car_json}
 
     reset_cars
-    (0..60).to_a.map do |sec|
-      move(cars, sec, x)
+    (0..100).to_a.map do |sec|
+      move(cars, sec)
+      safety_car = cars.find{|c| c.car.crash == true}
+      #text_output(cars, sec, x)
+      break if safety_car
       #puts visualize(cars, f)
-#      text_output(cars, sec, x)
       next if sec.zero?
-      @cars = cars.sort_by(&:m).reverse
+      #@cars = cars.sort_by{|x| x.m }.reverse
     end
 
-    #f.play repeat: false, fps: 1
+    #f.play repeat: true, fps: 5
   end
 
-  def move(cars, sec, x)
+  def move(cars, sec)
     cars.map do |car|
-      car.move(car, cars, circuit, sec, x)
+      car.move(car, cars, circuit, sec, x, rng)
+      return if car.crash == true
     end
   end
 
   def text_output(cars, sec, x)
     puts "_______ #{sec} _______"
     cars.map do |car|
-      @crash = car.crash == true
+      puts "#CRAHSHSHSHSHSHH" if car.crash
       puts "#{x}:#{car.position}: #{car.m.round}m, #{car.row.round}, #{car.velocity.round}, #{car.crash if car.crash}"
     end
-    return if @crash
   end
 
   def visualize(cars, f)
@@ -62,12 +65,6 @@ class Race
         x2 = (x + car.width); y2 = (y + car.length)
 
         mv(x,y); down; mv((x + car.width),y); mv(x2,y2); mv(x,y2); mv(x,y); up
-      end
-
-      crashed_car = cars.find {|x| x.crash == true}
-      if crashed_car
-        i = (150 + crashed_car.m.round) / 5
-        canvas.rows[i] = canvas.rows[i].red
       end
 
       f.snapshot canvas
