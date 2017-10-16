@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require 'drawille'
+require 'terminal-table'
 
 require_relative '../models/circuit'
 require_relative '../models/car'
@@ -19,17 +20,18 @@ class Race
     f = Drawille::FlipBook.new
 
     reset_cars
-    (0..100).to_a.map do |sec|
+    (0..30).to_a.map do |sec|
       move(cars, sec)
       safety_car = cars.find{|c| c.car.crash == true}
+      @cars = cars.sort_by{ |x| x.m }.reverse
       #text_output(cars, sec, x)
-      break if safety_car
-      #puts visualize(cars, f)
       next if sec.zero?
-      #@cars = cars.sort_by{|x| x.m }.reverse
+      #puts visualize(cars, f)
+      break if safety_car
+      return if cars.last.m > cars.first.circuit.turn.distance
     end
 
-    #f.play repeat: true, fps: 5
+    #f.play repeat: true, fps: 1
   end
 
   def move(cars, sec)
@@ -40,11 +42,13 @@ class Race
   end
 
   def text_output(cars, sec, x)
-    puts "_______ #{sec} _______"
+    rows = []
     cars.map do |car|
-      puts "#CRAHSHSHSHSHSHH" if car.crash
-      puts "#{x}:#{car.position}: #{car.m.round}m, #{car.row.round}, #{car.velocity.round}, #{car.crash if car.crash}"
+      rows << [car.position, car.car_json[:driver], car.m.round(2), car.row, (car.speed * 3.6).round(2), (car.braking_zone if car.braking_zone), (car.crash if car.crash)]
     end
+
+    table = Terminal::Table.new :headings => ['pos', 'driver', 'm', 'row', 'speed', 'braking', 'crash'], :rows => rows, :title => sec
+    puts table
   end
 
   def visualize(cars, f)

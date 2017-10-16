@@ -1,0 +1,124 @@
+{
+  "circuits": [
+    {
+      "name": "Albert Park Circuit",
+      "country": "Australia",
+      "turn": { "side": "R", "distance": 381, "brake_at": 100, "speed": 150, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Shanghai International Circuit",
+      "country": "China",
+      "turn": { "side": "R", "distance": 324.7, "brake_at": 50, "speed": 170, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Bahrain International Circuit",
+      "country": "Bahrain",
+      "turn": { "side": "R", "distance": 476.4, "brake_at": 100, "speed": 70, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Sochi International Street Circuit",
+      "country": "Russia",
+      "turn": { "side": "R", "distance": 205.2, "brake_at": 0, "speed": 300, "width": 3 },
+      "pole": "R"
+    },
+    {
+      "name": "Catalunya Circuit",
+      "country": "Spain",
+      "turn": { "side": "R", "distance": 690.5, "brake_at": 100, "speed": 130, "width": 3 },
+      "pole": "L"
+    },
+    {
+      "name": "Monaco Circuit",
+      "country": "Monaco",
+      "turn": { "side": "R", "distance": 111, "brake_at": 25, "speed": 103, "width": 2 },
+      "pole": "R"
+    },
+    {
+      "name": "Circuit Gilles Villeneuve",
+      "country": "Canada",
+      "turn": { "side": "R", "distance": 258, "brake_at": 125, "speed": 154, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Baku Street Circuit",
+      "country": "Azerbaijan",
+      "turn": { "side": "L", "distance": 206, "brake_at": 50, "speed": 116, "widht": 2 },
+      "pole": "R"
+    },
+    {
+      "name": "Red Bull Ring (A1-Ring)",
+      "country": "Austria",
+      "turn": { "side": "R", "distance": 318, "brake_at": 200, "speed": 122, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Silverstone Circuit",
+      "country": "Great Britain",
+      "turn": { "side": "R", "distance": 270, "brake_at": 0, "speed": 281, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Hungaroring",
+      "country": "Hungary",
+      "turn": { "side": "R", "distance": 576, "brake_at": 100, "speed": 85, "width": 3 },
+      "pole": "L"
+    },
+    {
+      "name": "Spa Francorchamps Circuit",
+      "country": "Belgium",
+      "turn": { "side": "R", "distance": 251, "brake_at": 150, "speed": 77, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Autodromo Nazionale Monza",
+      "country": "Italy",
+      "turn": { "side": "R", "distance": 615, "brake_at": 125, "speed": 80, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Singapore Circuit",
+      "country": "Singapore",
+      "turn": { "side": "L", "distance": 274, "brake_at": 50, "speed": 126, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Sepang International Circuit",
+      "country": "Malaysia",
+      "turn": { "side": "R", "distance": 620, "brake_at": 100, "speed": 74, "width": 3 },
+      "pole": "L"
+    },
+    {
+      "name": "Suzuka Circuit",
+      "country": "Japan",
+      "turn": { "side": "R", "distance": 373, "brake_at": 10, "speed": 252, "width": 2 },
+      "pole": "L"
+    },
+    {
+      "name": "Circuit of The Americas",
+      "country": "USA",
+      "turn": { "side": "L", "distance": 364, "brake_at": 100, "speed": 86, "width": 0 },
+      "pole": "R"
+    },
+    {
+      "name": "Autodromo Hermanos Rodriguez",
+      "country": "Mexico",
+      "turn": { "side": "R", "distance": 890, "brake_at": 200, "speed": 107, "width": 0 },
+      "pole": "L"
+    },
+    {
+      "name": "Autodromo Interlagos",
+      "country": "Brazil",
+      "turn": { "side": "L", "distance": 334, "brake_at": 50, "speed": 109, "width": 0 },
+      "pole": "R"
+    },
+    {
+      "name": "Yas Marina Circuit",
+      "country": "UAE",
+      "turn": { "side": "L", "distance": 305, "brake_at": 50, "speed": 150, "width": 0 },
+      "pole": "R"
+    }
+  ]
+}

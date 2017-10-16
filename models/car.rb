@@ -10,30 +10,26 @@ class Car
 
   def move(car, cars, circuit, sec, x, rng)
     @car, @cars, @circuit, @sec, @x, @rng = car, cars, circuit, sec, x, rng
-    @m, @crash, @brake_speed = m, crash, brake_speed
+    @m, @crash, @speed, @brake_sec = m, crash,speed, brake_sec
 
     return if sec.zero?
 
+    braking_zone ? adjust_speed : accelerate
     switch_rows?
-    adjust_speed if braking_zone
     crash_check unless m > circuit.turn.distance
-    accelerate
   end
 
   def crash_check
-    # no car is blocking
-    return unless car_in_front && car_in_front.row == row
-    # take over
-    return if (m + velocity) > car_in_front.m
-    # there's still space
-    return if m < (car_in_front.m - length)
-    return switch_rows? if space(next_row)
+    return unless car_in_front && car_in_front.row == row # no car is blocking
+    return if m <= (car_in_front.m - length) # there's still space
+    return if m - length > car_in_front.m # take over
+    return switch_rows? if space next_row # switching rows could prevent crashes
 
     if rng.rand(1.0) > 0.5
       @crash = true
       write_crash
     else
-      @m += brake_speed
+      adjust_speed
     end
   end
 
@@ -46,35 +42,38 @@ class Car
   end
 
   def improve_row_position
-    next_row = best_row.zero? ? - switch_row : switch_row
-    next_row unless (row + next_row < 0) || (row + next_row) > 4
+    return unless braking_zone
+    best_row.zero? ? - switch_row : switch_row
   end
 
   def faster
-    return unless car_in_front && car.velocity > car_in_front.velocity
+    return unless car_in_front && car.speed > car_in_front.speed
     if (best_row - row).abs < (best_row - car_in_front.row).abs
-      improve_row_position
+      best_row.zero? ? - switch_row : switch_row # improve_row_position
     elsif row == car_in_front.row
-      next_row = best_row.zero? ? switch_row : - switch_row
-      next_row unless (row + next_row < 0) || (row + next_row) > 4
+      best_row.zero? ? switch_row : - switch_row
     end
   end
 
   def defend
-    return unless car_in_back && car_in_back.velocity > car.velocity
-    next_row = switch_row if car_in_back.row > row
-    next_row ||= row == car_in_back.row ? 0 : - switch_row
-    next_row unless (row + next_row < 0) || (row + next_row) > 4
+    return unless car_in_back && car_in_back.speed > car.speed
+    next_r = switch_row if car_in_back.row > row
+    next_r ||= row == car_in_back.row ? 0 : - switch_row
+    next_r
+  end
+
+  def off_grid(next_r)
+    (row + next_r < 0) || (row + next_r) > 4
   end
 
   def space(next_row)
-    space_in_front(next_row) && space_in_back(next_row)
+    space_in_front(next_row) && space_in_back(next_row) && !off_grid(next_row)
  end
 
   def space_in_front(next_row)
     if car_in_front
       same_rows = (row + next_row) == car_in_front.row
-      to_close = m < (car_in_front.m - car_in_front.velocity - length)
+      to_close = m < (car_in_front.m - length)
       return false if same_rows && to_close
     end
     true
@@ -83,24 +82,35 @@ class Car
   def space_in_back(next_row)
     if car_in_back
       same_rows = (row + next_row) == car_in_back.row
-      to_close = (m + velocity - length) < car_in_back.m
+      to_close = (m - length) < car_in_back.m
       return false if same_rows && to_close
     end
     true
   end
 
   def adjust_speed
-    return if @velocity <= 0.5
-    @velocity += @brake_speed
+    @brake_sec += 1
+    @acceleration = speed - brake_delay unless @speed < (circuit.turn.speed / 3.6)
+    @m += (distance(sec: brake_sec) - distance(sec: (brake_sec - 1)))
+    @speed = speed - brake_delay unless @speed < (circuit.turn.speed / 3.6)
   end
 
-  def brake_speed
-    @brake_speed = 0 if circuit.turn.brake_at == 0
-    @brake_speed ||= (speed - (circuit.turn.speed / 3.6)) / circuit.turn.brake_at
+  def brake
+
+  end
+
+  def brake_delay
+    vgem = (circuit.turn.speed / 3.6 + speed) / 2
+    s = circuit.turn.brake_at
+    t = s / vgem
+    v = speed - (circuit.turn.speed / 3.6)
+    @brake_delay = 0 if circuit.turn.brake_at == 0
+    @brake_delay ||= v / t * t if t < 1
+    @brake_delay ||= v / t
   end
 
   def braking_zone
-    m > (circuit.turn.distance - circuit.turn.brake_at)
+    (m + 10) > (circuit.turn.distance - circuit.turn.brake_at)
   end
 
   def car_in_front
@@ -114,18 +124,35 @@ class Car
   end
 
   def accelerate
-    @m += velocity
+    @m += (distance(sec: sec) - distance(sec: (sec - 1)))
+    return if @speed * 3.6 > 340
+    @speed += acceleration
+  end
+
+  def distance(sec:)
+    0.5 * acceleration * (sec * sec)
   end
 
   def position; @cars.index @car end
 
   def crash;    @crash    ||= false end
-  def m;        @m        ||= -(position * 8) end
   def row;      @row      ||= grid_row end
-  def velocity; @velocity ||= speed end
-  def speed;    @speed    ||= car_json[:acceleration] / 2.0 end
+  def m;        @m        ||= -(position * 8) end
 
-  def grid_row; circuit.circuit_json[:pole] == 'L' ? 1 : 3 end
+  def speed;        @speed        ||= acceleration * sec end
+  def acceleration; @acceleration ||= car_json[:acceleration] end
+  def brake_sec;    @brake_sec    ||= 0 end
+
+  def grid_row
+    if circuit.circuit_json[:pole] == 'L'
+      return car.position.even? ? 1 : 3
+    end
+
+    if circuit.circuit_json[:pole] == 'R'
+      return car.position.even? ? 3 : 1
+    end
+  end
+
   def best_row; circuit.turn.side == 'L' ? 0 : 4 end
 
   def length; 5 end
@@ -133,16 +160,9 @@ class Car
   def switch_row; 1 end
 
   def write_crash
-    j = {
-      "x" => x,
-      "sec" => sec,
-      "position" => position,
-      "circuit" => circuit.country,
-      "distance" => circuit.turn.distance,
-      "brake_at" => circuit.turn.brake_at,
-      "speed" => circuit.turn.speed,
-      "driver" => car_json[:driver]
-    }
+    j = { "x" => x, "sec" => sec, "position" => position, "circuit" => circuit.country,
+          "distance" => circuit.turn.distance, "brake_at" => circuit.turn.brake_at,
+          "speed" => circuit.turn.speed, "driver" => car_json[:driver] }
 
     File.open("crashes.json", 'a') { |file| file.write("#{MultiJson.dump j},") }
   end
