@@ -1,0 +1,27 @@
+\documentclass[12pt]{article}
+
+\usepackage{multicol}
+\usepackage[textwidth=528pt]{geometry}
+
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepgfplotslibrary{fillbetween}
+
+\usepackage{filecontents}
+\usepackage{csvsimple}
+\usepackage{caption}
+
+	\title{\textbf{Chi-square, RNG hypothesis testing}}
+	\date{\today}
+	\author{Kevin Wilbrink (6310621) and Jordi Wippert ()}
+
+\begin{document}
+	\maketitle
+
+	\begin{multicols*}{2}
+		\section{Example}
+		\input{Sections/Example.tex}
+		\section{Our test case}
+		\input{Sections/OurCase.tex}
+	\end{multicols*}
+\end{document}

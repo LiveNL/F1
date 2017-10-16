@@ -1,0 +1,27 @@
+Now we are going to test the random number generator used in our simulation model. We use the build in random number generator function to generate random numbers. To test the random number generator we will use it as coin, with only the possibility of a head and a tail (zero or one).
+
+The null and alternative hypothesis:
+\begin{itemize}
+	\itemsep0em
+	\item H\textsubscript{0}: The random number generator is a good generator
+	\item H\textsubscript{1}: The random number generator is a bad generator
+\end{itemize}
+
+Then we will continue and find the other necessary values:
+\begin{itemize}
+	\itemsep0em
+	\item For the level of significance we will use the same value as used in the example, $\alpha$ of 0.05.
+	\item The \(d.f. = 6 - 1 = 5\).
+	\item The critical value, found in table \ref{table:chisquare}, is \textbf{11.07}. 
+\end{itemize}
+
+Using the default random number generator. We have written an application that generates 50,000 times a number between 1 and 6. This we we can simulate a die roll, just like our example. The results of the die rolls are shown in table \ref{table:expobssquare2}. The sum of the values is \textbf{10.7051} and that is our ${\chi}^2$ value.
+
+\begin{tabular}{l|l|l|l}
+    \bfseries Nr. & \bfseries Expected & \bfseries Observed & \bfseries ${\chi}^2$% specify table head
+    \csvreader[head to column names, separator=semicolon]{expobs2.csv}{}% use head of csv as column names
+    {\\\hline\csvcoli&\e&\o&\x}% specify your coloumns here
+\end{tabular}
+\captionof{table}{Die rolls, 50,000 times.}\label{table:expobssquare2}
+
+Drawing the ${\chi}^2$ value in figure \ref{fig:chisquare} shows, that the value is lower than the critical value. Therefore we can accept H\textsubscript{0}, our random number generator truly generates random numbers.

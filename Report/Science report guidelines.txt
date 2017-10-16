@@ -1,0 +1,19 @@
+Science report
+
+Nature Letter
+	About 4 pages (well max. is 4..) and 1500 words (excluding first paragraph, legends)
+	Title (max. 90 characters including space)
+	Abstract bold face and less than 180 words
+
+
+Base
+	Title (max. 90 characters)
+	Abstract
+	Introduction
+	Methods
+	Results
+	Discussion
+	Conclusion
+	Supplementary Materials (Appendix)
+	Acknowledgements (thanking people)
+	References
