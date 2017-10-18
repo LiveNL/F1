@@ -24,7 +24,7 @@ class Race
       move(cars, sec)
       safety_car = cars.find{|c| c.car.crash == true}
       @cars = cars.sort_by{ |x| x.m }.reverse
-      #text_output(cars, sec, x)
+      text_output(cars, sec, x)
       next if sec.zero?
       #puts visualize(cars, f)
       break if safety_car

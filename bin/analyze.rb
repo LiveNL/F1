@@ -1,7 +1,7 @@
 require 'multi_json'
 
 def json
-  @json ||= MultiJson.load File.open('crashes.json'), symbolize_keys: true
+  @json ||= MultiJson.load File.open('crashes-final.json'), symbolize_keys: true
 end
 
 def sec
@@ -41,4 +41,14 @@ def speed
   by_spd = json[:crashes].group_by{|x| [x[:speed], x[:distance]]}.sort
   by_spd.map {|k,v| [k,v.count]}
 end
+
+brake_at = json[:crashes].group_by{|x| [x[:brake_at], x[:circuit]]}.map{|k,v| [k,v.count]}.sort
+brake_at.map {|k,v| "(#{k[0]},#{v})"}.join
+
+belgium = json[:crashes].find_all{|x| x[:circuit] == "Belgium"}
+belgium.group_by{|x| x[:m].to_i}.map{|k,v| [k, v.count]}.sort
+
+mexico = json[:crashes].find_all{|x| x[:circuit] == "Mexico"}.group_by{|x| x[:m].to_i}.map{|k,v| [k, v.count]}.sort.map {|k,v| "(#{k},#{v})"}.join
+mexico = json[:crashes].find_all{|x| x[:circuit] == "Bahrain"}.group_by{|x| x[:m].to_i}.map{|k,v| [k, v.count]}.sort.map {|k,v| "(#{k},#{v})"}.join
+
 require'pry';binding.pry;
