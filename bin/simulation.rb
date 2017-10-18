@@ -18,6 +18,7 @@ require 'multi_json'
 # TODO: - Documentation:
 # Find arguments to explain why it's logical to make it random to choose between braking and crashing,
 # could be based on previous races.
+# max speed car? (on for example mexico; 357 1st straight)
 
 # TODO: - Code
 # Make acceleration non-linear
