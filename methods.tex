@@ -33,30 +33,55 @@ Crashes can only happen with cars that are in the same row. And if a crash is ne
 \begin{tikzpicture}
 \begin{axis}[
     title={Accelerate distance / crashes},
-    xlabel={Metres},
-    ylabel={Crahes},
-    xmin=0, xmax=800,
-    ymin=0, ymax=800,
+    xlabel={Brake_at},
+    ylabel={Metres},
+    zlabel={Crashes},
+    xmin=0, xmax=250,
+    ymin=0, ymax=900,
+    zmin=0, zmax=200,
     legend pos=north west,
     ymajorgrids=true,
     grid style=dashed,
 ]
 
-\addplot[
+\addplot3[
     color=blue,
     mark=square,
     ]
     coordinates{
-    (86,155)(101,201)(118,55)(133,98)(156,547)(205.2,34)(224,666)(255,228)(264,179)(270,92)(274.7,109)(281,124)(284,391)(363,99)(376.4,267)(476,535)(490,701)(520,664)(590.5,546)(690,582)
+      (0,270,7)(0,205.2,23)(10,373,15)(25,111,72)(50,206,77)(50,334,53)(50,324.7,77)(50,274,85)(50,305,93)(100,381,80)(100,476.4,71)(100,576,69)(100,620,88)(100,690.5,69)(100,364,77)(125,258,59)(125,615,75)(150,251,35)(200,318,14)(200,890,62)
     };
-    %    \legend{CuSO$_4\cdot$5H$_2$O}
 
 \end{axis}
 \end{tikzpicture} \\
 
 http://www.dictionary.com/browse/grand-prix
 \end{document}
+(111,103,72)(205,300,23)
+=> [[111, 72, 103, "Monaco"],
+ [205.2, 23, 300, "Russia"],
+ [206, 77, 116, "Azerbaijan"],
+ [251, 35, 77, "Belgium"],
+ [258, 59, 154, "Canada"],
+ [270, 7, 281, "Great Britain"],
+ [274, 85, 126, "Singapore"],
+ [305, 93, 150, "UAE"],
+ [318, 14, 122, "Austria"],
+ [324.7, 77, 170, "China"],
+ [334, 53, 109, "Brazil"],
+ [364, 77, 86, "USA"],
+ [373, 15, 252, "Japan"],
+ [381, 80, 150, "Australia"],
+ [476.4, 71, 70, "Bahrain"],
+ [576, 69, 85, "Hungary"],
+ [615, 75, 80, "Italy"],
+ [620, 88, 74, "Malaysia"],
+ [690.5, 69, 130, "Spain"],
+ [890, 62, 107, "Mexico"]]
 
+      (6,33,1)(7,577,3)(8,1205,4)(9,1131,6)(10,2021,7)(11,4392,8)(12,1526,7)(13,94893,2)(14,843,4)(15,399,5)(16,199,2)(17,121,3)
+    %    \legend{CuSO$_4\cdot$5H$_2$O}
+    (86,155)(101,201)(118,55)(133,98)(156,547)(205.2,34)(224,666)(255,228)(264,179)(270,92)(274.7,109)(281,124)(284,391)(363,99)(376.4,267)(476,535)(490,701)(520,664)(590.5,546)(690,582)
 86, brake: 25 -- Monaco, crashes: 155
 101, brake: 150 -- Belgium, crashes: 201
 118, brake: 200 -- Austria, crashes: 55
