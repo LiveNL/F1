@@ -19,7 +19,6 @@
     { "driver": "Marcus Ericsson", "car": "Sauber Ferrari", "acceleration": 9.4 },
     { "driver": "Pascal Wehrlein", "car": "Sauber Ferrari", "acceleration": 9.4 },
     { "driver": "Danill Kvyat", "car": "Toro Rosso", "acceleration": 9.6 },
-    { "driver": "Stoffel Vandoorne", "car": "McLaren Honda", "acceleration": 10.2 },
     { "driver": "Stoffel Vandoorne", "car": "McLaren Honda", "acceleration": 10.2 }
   ]
 }

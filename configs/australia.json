@@ -1,104 +1,24 @@
 {
   "cars": [
-    {
-      "driver": "Lewis Hamilton",
-      "car": "Mercedes",
-      "acceleration": 11.2
-    },
-    {
-      "driver": "Sebastian Vettel",
-      "car": "Ferrari",
-      "acceleration": 11.2
-    },
-    {
-      "driver": "Valtteri Bottas",
-      "car": "Mercedes",
-      "acceleration": 11.0
-    },
-    {
-      "driver": "Kimi Räikkönen",
-      "car": "Ferrari",
-      "acceleration": 11.2
-    },
-    {
-      "driver": "Max Verstappen",
-      "car": "Red Bull Racing Tag Heuer",
-      "acceleration": 10.8
-    },
-    {
-      "driver": "Romain Grosjean",
-      "car": "Haas Ferrari",
-      "acceleration": 10
-    },
-    {
-      "driver": "Felipe Massa",
-      "car": "Williams Mercedes",
-      "acceleration": 10
-    },
-    {
-      "driver": "Carlos Sainz",
-      "car": "Toro Rosso",
-      "acceleration": 9.6
-    },
-    {
-      "driver": "Danill Kvyat",
-      "car": "Toro Rosso",
-      "acceleration": 9.6
-    },
-    {
-      "driver": "Sergio Perez",
-      "car": "Force India Mercedes",
-      "acceleration": 10.4
-    },
-    {
-      "driver": "Nico Hulkenberg",
-      "car": "Renault",
-      "acceleration": 9.8
-    },
-    {
-      "driver": "Fernando Alonso",
-      "car": "McLaren Honda",
-      "acceleration": 10.2
-    },
-    {
-      "driver": "Esteban Ocon",
-      "car": "Force India Mercedes",
-      "acceleration": 10.4
-    },
-    {
-      "driver": "Marcus Ericsson",
-      "car": "Sauber Ferrari",
-      "acceleration": 9.4
-    },
-    {
-      "driver": "Daniel Ricciardo",
-      "car": "Red Bull Racing Tag Heuer",
-      "acceleration": 10.6
-    },
-    {
-      "driver": "Antonio Giovinazzi",
-      "car": "Sauber Ferrari",
-      "acceleration": 9.4
-    },
-    {
-      "driver": "Kevin Magnussen",
-      "car": "Haas Ferrari",
-      "acceleration": 10
-    },
-    {
-      "driver": "Stoffel Vandoorne",
-      "car": "McLaren Honda",
-      "acceleration": 10.2
-    },
-    {
-      "driver": "Jolyon Palmer",
-      "car": "Renault",
-      "acceleration": 9.8
-    },
-    {
-      "driver": "Lance Stroll",
-      "car": "Williams Mercedes",
-      "acceleration": 10
-    }
+    { "driver": "Lewis Hamilton", "car": "Mercedes", "acceleration": 11.2 },
+    { "driver": "Sebastian Vettel", "car": "Ferrari", "acceleration": 11.2 },
+    { "driver": "Valtteri Bottas", "car": "Mercedes", "acceleration": 11.0 },
+    { "driver": "Kimi Räikkönen", "car": "Ferrari", "acceleration": 11.2 },
+    { "driver": "Max Verstappen", "car": "Red Bull Racing Tag Heuer", "acceleration": 10.8 },
+    { "driver": "Romain Grosjean", "car": "Haas Ferrari", "acceleration": 10 },
+    { "driver": "Felipe Massa", "car": "Williams Mercedes", "acceleration": 10 },
+    { "driver": "Carlos Sainz", "car": "Toro Rosso", "acceleration": 9.6 },
+    { "driver": "Danill Kvyat", "car": "Toro Rosso", "acceleration": 9.6 },
+    { "driver": "Sergio Perez", "car": "Force India Mercedes", "acceleration": 10.4 },
+    { "driver": "Nico Hulkenberg", "car": "Renault", "acceleration": 9.8 },
+    { "driver": "Fernando Alonso", "car": "McLaren Honda", "acceleration": 10.2 },
+    { "driver": "Esteban Ocon", "car": "Force India Mercedes", "acceleration": 10.4 },
+    { "driver": "Marcus Ericsson", "car": "Sauber Ferrari", "acceleration": 9.4 },
+    { "driver": "Daniel Ricciardo", "car": "Red Bull Racing Tag Heuer", "acceleration": 10.6 },
+    { "driver": "Antonio Giovinazzi", "car": "Sauber Ferrari", "acceleration": 9.4 },
+    { "driver": "Kevin Magnussen", "car": "Haas Ferrari", "acceleration": 10 },
+    { "driver": "Stoffel Vandoorne", "car": "McLaren Honda", "acceleration": 10.2 },
+    { "driver": "Jolyon Palmer", "car": "Renault", "acceleration": 9.8 },
+    { "driver": "Lance Stroll", "car": "Williams Mercedes", "acceleration": 10 }
   ]
 }
