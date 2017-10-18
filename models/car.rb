@@ -12,6 +12,7 @@ class Car
     @car, @cars, @circuit, @sec, @x, @rng = car, cars, circuit, sec, x, rng
     @m, @crash, @speed, @brake_sec = m, crash,speed, brake_sec
 
+    start_position if sec.zero?
     return if sec.zero?
 
     braking_zone ? adjust_speed : accelerate
@@ -29,7 +30,7 @@ class Car
       @crash = true
       write_crash
     else
-      adjust_speed
+      @m -= 20
     end
   end
 
@@ -90,13 +91,10 @@ class Car
 
   def adjust_speed
     @brake_sec += 1
-    @acceleration = speed - brake_delay unless @speed < (circuit.turn.speed / 3.6)
+    return unless speed - brake_delay >= circuit.turn.speed / 3.6
+    @acceleration = speed - brake_delay
     @m += (distance(sec: brake_sec) - distance(sec: (brake_sec - 1)))
-    @speed = speed - brake_delay unless @speed < (circuit.turn.speed / 3.6)
-  end
-
-  def brake
-
+    @speed = speed - brake_delay
   end
 
   def brake_delay
@@ -126,6 +124,7 @@ class Car
   def accelerate
     @m += (distance(sec: sec) - distance(sec: (sec - 1)))
     return if @speed * 3.6 > 340
+    return if @speed < 0
     @speed += acceleration
   end
 
@@ -134,6 +133,7 @@ class Car
   end
 
   def position; @cars.index @car end
+  def start_position; @st ||= @cars.index @car end
 
   def crash;    @crash    ||= false end
   def row;      @row      ||= grid_row end
@@ -162,7 +162,7 @@ class Car
   def write_crash
     j = { "x" => x, "sec" => sec, "position" => position, "circuit" => circuit.country,
           "distance" => circuit.turn.distance, "brake_at" => circuit.turn.brake_at,
-          "speed" => circuit.turn.speed, "driver" => car_json[:driver] }
+          "speed" => circuit.turn.speed, "driver" => car_json[:driver], "m" => m, "v" => speed, "start" => start_position}
 
     File.open("crashes.json", 'a') { |file| file.write("#{MultiJson.dump j},") }
   end

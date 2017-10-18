@@ -20,7 +20,7 @@ class Race
     f = Drawille::FlipBook.new
 
     reset_cars
-    (0..30).to_a.map do |sec|
+    (0..60).to_a.map do |sec|
       move(cars, sec)
       safety_car = cars.find{|c| c.car.crash == true}
       @cars = cars.sort_by{ |x| x.m }.reverse
@@ -28,7 +28,7 @@ class Race
       next if sec.zero?
       #puts visualize(cars, f)
       break if safety_car
-      return if cars.last.m > cars.first.circuit.turn.distance
+      break if cars.last.m > cars.first.circuit.turn.distance
     end
 
     #f.play repeat: true, fps: 1
