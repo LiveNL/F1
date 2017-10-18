@@ -68,22 +68,22 @@ void chiSquare(std::map<int, int> list, int i) {
         std::cout << number << "\t" << expected << "\t" << observed << "\t" << x2 << "\n";
     }
     
-    //if(x2Sum > chiSquareValue)
-    //{
+    if(x2Sum > chiSquareValue)
+    {
     
         std::cout << expected << "\t" << (i - 1) << "\t" << x2Sum << "\n";
-    /*}
+    }
     else
     {
         std::cout << "\n#\tExp\tObs\tX^2\n";
         std::cout << expected << "\t" << (i - 1) << "\t" << x2Sum << "\n";
-    }*/
+    }
 }
 
 int main(int argc, const char * argv[]) {
     
     std::cout << "Hello, World!\nEnter the X^2 value:\n";
-    //std::cin >> chiSquareValue;
+    std::cin >> chiSquareValue;
     
     srand((int)time(0));
     
