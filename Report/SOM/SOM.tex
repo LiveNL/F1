@@ -11,6 +11,9 @@
 \usepackage{csvsimple}
 \usepackage{caption}
 
+\usepackage[style=numeric,backend=biber]{biblatex}
+\addbibresource{ref.bib}
+
 	\title{\textbf{Chi-square, RNG hypothesis testing}}
 	\date{\today}
 	\author{Kevin Wilbrink (6310621) and Jordi Wippert ()}
@@ -23,5 +26,6 @@
 		\input{Sections/Example.tex}
 		\section{Our test case}
 		\input{Sections/OurCase.tex}
+		\printbibliography
 	\end{multicols*}
 \end{document}

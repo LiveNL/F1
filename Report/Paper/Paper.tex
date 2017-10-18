@@ -1,7 +1,16 @@
 \documentclass[12pt]{article}
 
+\usepackage{tabularx}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{pgfplotstable}
 \usepackage{multicol}
 \usepackage[textwidth=528pt]{geometry}
+\usepackage{caption}
+%\usepackage{hyperref}
+\usepackage[style=numeric,backend=biber]{biblatex}
+\addbibresource{ref.bib}
+\nocite{*}
 
 	\title{\textbf{Formula 1 accident calculations via Monte Carlo on first straight + turn}}
 	\date{\today}
@@ -37,7 +46,7 @@
 		\section*{Acknowledgements}
 		\input{Sections/Acknowledgements.tex}
 
-		\section*{References}
+		%\section*{References}
 		\input{Sections/References.tex}
 	\end{multicols*}
 \end{document}
