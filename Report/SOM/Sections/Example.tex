@@ -1,27 +1,27 @@
-This supplementary online material will describe a method to determine if a random number generator distributes the random numbers in a fair manner. Using a statistical method, we can prove it. However even if you use a good die or a random number generator, each possible sequence is equally likely to appear. That means that a good random number generator might also produce sequences that look nonrandom and still fail any statistical test, but actually are random. It depends on the number of samples (or die rolls), because it is prossible that the random number generator produces series of multiple same numbers in a row.
+Using a statistical method, it's possible to prove that a random number generator distributes in a fair manner. A distribution can be qualified as 'good' when each possible sequence is equally likely to appear. This means that a good random number generator might also produce sequences that look non-random and still fail any statistical test, but actually are random.
 
-One of the possible methods to statistical determine if the distributed random numbers are really random, is the hypothesis chi-square (${\chi}^2$) method \cite{chisquareRandom} \cite{chisquare}. This method follows some steps:
+One of the possible methods to statistically determine if the random numbers are really random, is the hypothesis Chi-Square (${\chi}^2$) method \cite{chisquareRandom} \cite{chisquare}. This method has the following steps:
 
 \begin{enumerate}
 	\itemsep0em
 	\item State null (H\textsubscript{0}) and alternative (H\textsubscript{1}) hypothesis
 	\item Choose level of significance ($\alpha$)
-	\item Find critical values 
+	\item Find critical values
 	\item Find test statistic
 	\item Draw your conclusion
 \end{enumerate}
 
-First, we will start with an example, in this example we will use the chi-square method to determine if a die from a random casino is a fair die. Since we assume that the die is fair, we can state our \textbf{H\textsubscript{0}} hypothesis: the used die is a fair die. On the other hand, the alternative hypothesis, \textbf{H\textsubscript{1}}, will be: the used die is not a fair die.
+Starting with an example, we'll use the Chi-Square method to determine if a random die can be considered as fair. Since we expect that the die is fair, we can state our \textbf{H\textsubscript{0}} hypothesis: the used die is a fair die. On the other hand, the alternative hypothesis, \textbf{H\textsubscript{1}}, will be: the used die is not a fair die.
 
 The next step is to choose the level of significance. The level of significance, the Greek letter $\alpha$, is the probability of rejecting the null hypothesis, H\textsubscript{0}. A significance level of 0,05 means a 5\% risk of concluding that a difference exists when there is not an actual difference. The level of 0,05 is quite often chosen for many applications and we will use this number for our example.
 
-After choosing the level of significance, it is time to determine the critical value (abbreviated as c.v.). The critical value can be determined by using a chi-square table. Before we can look up the value, we need to calculate the degrees of freedom. The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. Most of the time it is abbreviated as d.f. To calculate the value, we use equation \ref{eq:df}.
+After choosing the level of significance, a critical value (abbreviated as c.v.) should be determined. This can be done by using a chi-square table. This requires the look of a value corresponding a degrees of freedom. The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. Most of the time it is abbreviated as d.f. To calculate the value, we use equation \ref{eq:df}.
 
 \begin{equation}\label{eq:df}
 d.f. = n - 1
 \end{equation}
 
-For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all the necessary values are now known, we can use table \ref{table:chisquare} to find our critical value. Which will be \textbf{11.07}.\\
+For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all the necessary values are now known, the table \ref{table:chisquare} can be used to find the critical value. Which will be \textbf{11.07}.\\
 
 \begin{tabular}{l|l|l|l|l|l|l|l|l}
     \bfseries d.f. & \bfseries ${\chi}^2\textsubscript{0.99}$ & \bfseries ${\chi}^2\textsubscript{0.1}$ & \bfseries ${\chi}^2\textsubscript{0.05}$ & \bfseries ${\chi}^2\textsubscript{0.001}$% specify table head
@@ -30,6 +30,7 @@ For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all th
 \end{tabular}
 \captionof{table}{Chi-square critical values. \cite{chisquareTable} }\label{table:chisquare}
 
+\smallskip
 \begin{tikzpicture}
 \begin{axis}[grid=both, xtick={0,2,...,20}, ytick={0,0.02,...,0.18}, compat=newest, xlabel=$x$, xlabel style={at={(1,0)}, anchor=west}, ylabel=$pdf f(x)$, ylabel style={rotate=-90,at={(0,1)}, anchor=south}]
 \addplot[name path=f, mark=none, red, ultra thick] table [x=x, y=probability, col sep=semicolon] {data.csv};
@@ -42,16 +43,18 @@ For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all th
 \end{axis}
 \end{tikzpicture}
 \captionof{figure}{The ${\chi}^2$ (chi-square) distribution.}\label{fig:chisquare}
+\smallskip
 
 In figure \ref{fig:chisquare} we have drawn the line of degrees of freedom and have marked the rejection region, H\textsubscript{0}, based on the critical value.
 
-Now we can calculate the chi-square. The formula for calculating the chi-square is given in equation \ref{eq:chisquare}, where \textbf{O} is the observed value and \textbf{E} the expected value. By summing all values, we get our test statistic value.
+Now we can calculate the chi-square. The formula for calculating the chi-square is given in equation \ref{eq:chisquare}, where \textbf{O} is the observed value and \textbf{E} the expected value. By summing all values, we get the statistic value.
 
 \begin{equation}\label{eq:chisquare}
 {\chi}^2=\sum\frac{(O - E)^2}{E}
 \end{equation}
 
 The last step in the process is drawing a conclusion. When the test statistic value is larger than the critical value, we can safely reject H\textsubscript{0} and accept H\textsubscript{1}.
+\smallskip
 
 \begin{tabular}{l|l|l|l}
     \bfseries Nr. & \bfseries Expected & \bfseries Observed & \bfseries ${\chi}^2$% specify table head
@@ -60,4 +63,5 @@ The last step in the process is drawing a conclusion. When the test statistic va
 \end{tabular}
 \captionof{table}{Die rolls, 204 times.}\label{table:expobssquare}
 
+\smallskip
 Based on the observed and expected data as shown in table \ref{table:expobssquare}, we can calulate the chi-square and will find a sum of \textbf{15.29}. This value is larger than the \textbf{11.07}, so we can reject our H\textsubscript{0} hypothesis and accept H\textsubscript{1}. Therefore the used die is not a fair die.

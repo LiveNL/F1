@@ -1,6 +1,6 @@
 To obtain a view on how the amount of crashes in the first section is influened by various factors, Monte Carlo simulations are being used. Each simulation represents a start of a grand prix, in which every car attempts to pass the first turn. These cars, with an average length of five metres, and a width of two, start at a grid with two sides. Every other car starts left, or right, based on the first (pole) position, with 8 metres in between \cite{car-regulations}, on a so called grid. For our simulation we divided the total width of the circuit in five lanes, to make it possible to take over cars.
 
-There are 20 cars in each race. And in the simulations, every track of the 2017 formula 1 calendar is being tested, 20 in total. The order in which the cars start, is sampled in each simulation out of all achieved qualification results in this season so far (16) \cite{som}. By doing this, the possibilty that a driver had a bad day, or penalty can be neglected. When the driver within a team is switched during the season, this will be taken in advance.
+There are 20 cars in each race. And in the simulations, every track of the 2017 formula 1 calendar is being tested, 20 in total. The order in which the cars start, is sampled in each simulation out of all achieved qualification results in this season so far (16). By doing this, the possibilty that a driver had a bad day, or penalty can be neglected. When the driver within a team is switched during the season, this will be taken in advance.
 
 To mimic the real world, behaviour of drivers/cars is based on the four steps used in the Nagel-Schreckenberg model;\\
 
@@ -10,7 +10,7 @@ To mimic the real world, behaviour of drivers/cars is based on the four steps us
 (3) randomization,\\
 (4) car motion.\\
 
-As long as the point of where a car should brake isn't reached, the car accelerates (1). The numbers being used to calculate the amount of metres that are added every second, are based on a few cars \cite{car-speeds}\cite{car-speeds-2}, and define the range for all cars.
+As long as the point of where a car should brake isn't reached, the car accelerates (1). The numbers being used to calculate the amount of metres that are added every second, are based on a few cars \cite{som}, and define the range for all cars.
 
 When the 'braking zone' is (nearly) reached, the negative acceleration (2) is being calculated with the current speed of the car and the metres that are needed to brake for this turn on average \cite{som}.
 

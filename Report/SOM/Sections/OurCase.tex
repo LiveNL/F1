@@ -1,4 +1,4 @@
-Now we are going to test the random number generator used in our simulation model. We use the build in random number generator function to generate random numbers. To test the random number generator, we will use it as die.
+In our simulation we used Ruby's pseudo-random number generator\cite{ruby-rng} which is a modified Mersenne Twister\cite{mersenne-twister} with a period of 2**19937-1.  To test the distribution of the random number generator, we will use it as die.
 
 The null and alternative hypothesis:
 \begin{itemize}
@@ -7,16 +7,17 @@ The null and alternative hypothesis:
 	\item H\textsubscript{1}: The random number generator is a bad generator
 \end{itemize}
 
-Then we will continue and find the other necessary values:
+Other necessary values:
 \begin{itemize}
 	\itemsep0em
-	\item For the level of significance we will use the same value as used in the example, $\alpha$ of 0.05.
-	\item The \(d.f. = 6 - 1 = 5\).
-	\item The critical value, found in table \ref{table:chisquare}, is \textbf{11.07}. 
+  \item the level of significance 0.05$\alpha$ (same as example-value);
+	\item the \(d.f. = 6 - 1 = 5\);
+	\item and the critical value, found in table \ref{table:chisquare}, \textbf{11.07}.
 \end{itemize}
 
-Using the default random number generator. We have written an application that generates 50,000 times a number between 1 and 6. This way we can simulate a die roll, just like our example. The results of the die rolls are shown in table \ref{table:expobssquare2}. The sum of the values is \textbf{6.4047} and that is our ${\chi}^2$, or test statistic value.
+The results of the 'die rolls' are shown in table \ref{table:expobssquare2}, with a quantity of 50,000. The sum of the values is \textbf{6.4047}, which is our ${\chi}^2$, or test statistic value.
 
+\bigskip
 \begin{tabular}{l|l|l|l}
     \bfseries Nr. & \bfseries Expected & \bfseries Observed & \bfseries ${\chi}^2$% specify table head
     \csvreader[head to column names, separator=semicolon]{expobs2.csv}{}% use head of csv as column names
@@ -24,4 +25,5 @@ Using the default random number generator. We have written an application that g
 \end{tabular}
 \captionof{table}{Die rolls, 50,000 times.}\label{table:expobssquare2}
 
+\smallskip
 Drawing the ${\chi}^2$ value in figure \ref{fig:chisquare} shows, that the value is lower than the critical value. Therefore we can accept H\textsubscript{0}, our random number generator truly generates random numbers.
