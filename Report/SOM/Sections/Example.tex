@@ -1,8 +1,8 @@
-Can we really test a number generator? It's a question that will quite often result in a negative answer. However, it is possible. In this supplementary online material we will descripe the method we used to determine the outcome of our random number generator.
+Can we really test a random number generator? It is a question that will quite often result in a negative answer. However, it is possible. In this supplementary online material, we will describe the method we used to determine the outcome of our random number generator.
 
-To determine if the random number generator somewhat distributes the random numbers in a fair way, we will need a statistical method. Since that is in our knownlegde the only way. Probably it sounds weird, how it is possible to determine if the random numbers numbers are really random? Even if you use a good die or random number generator, each possible sequence is equally likely to appear. That means that a good random number generator might also produce sequences that look nonrandom and still fail any statistical test, but actually are random. It depends a little bit on the number od samples (or die rolls), because it is prossible that the random number generator produces series of multiple same numbers in a row.
+To determine if the random number generator distributes the random numbers in a fair manner, we will need a statistical method. Since that is in our knowledge the only way. Probably it sounds weird, how is it possible to determine if the random numbers are really random? Even if you use a good die or a random number generator, each possible sequence is equally likely to appear. That means that a good random number generator might also produce sequences that look nonrandom and still fail any statistical test, but actually are random. It depends a little bit on the number of samples (or die rolls), because it is prossible that the random number generator produces series of multiple same numbers in a row.
 
-One of the possible methods to statistical determine if the distrubuted random numbers are really random, we will use the hypothesis chi-square (${\chi}^2$) method \cite{chisquareRandom} \cite{chisquare}. This method follows some steps:
+One of the possible methods to statistical determine if the distributed random numbers are really random, we will use the hypothesis chi-square (${\chi}^2$) method \cite{chisquareRandom} \cite{chisquare}. This method follows some steps:
 
 \begin{enumerate}
 	\itemsep0em
@@ -14,11 +14,11 @@ One of the possible methods to statistical determine if the distrubuted random n
 \end{enumerate}
 
 
-First we will start with an example, in this example we will use the chi-square method to determine if a die from a random casino is a fair die. Since we assume that the die is fair, we can state our \textbf{H\textsubscript{0}} hypothesis: the used die is a fair die. On the other hand, the alternative hypothesis, \textbf{H\textsubscript{1}}, will be that the used die is not a fair die.
+First, we will start with an example, in this example we will use the chi-square method to determine if a die from a random casino is a fair die. Since we assume that the die is fair, we can state our \textbf{H\textsubscript{0}} hypothesis: the used die is a fair die. On the other hand, the alternative hypothesis, \textbf{H\textsubscript{1}}, will be: the used die is not a fair die.
 
-The next step is to choose the level of significance. The level of significance, the Greek letter $\alpha$, is the probability of rejecting the null hypothesis, H\textsubscript{0}, when it is true. A significance level of 0,05 means a 5\% risk of concluding that a difference exists when there is not actual difference. The level of 0,05 is quite often chosen for many applications and we will use this number for our example.
+The next step is to choose the level of significance. The level of significance, the Greek letter $\alpha$, is the probability of rejecting the null hypothesis, H\textsubscript{0}. A significance level of 0,05 means a 5\% risk of concluding that a difference exists when there is not an actual difference. The level of 0,05 is quite often chosen for many applications and we will use this number for our example.
 
-After choosing the level of significance, it is time to determine the critical value, sometimes written as c.v., can be determined by using a chi-square table. Before we can lookup the values, we need to calculate the degrees of freedom. The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. Most of the time it is abbreviated as d.f. To calculate the value, we use equation \ref{eq:df}.
+After choosing the level of significance, it is time to determine the critical value (abbreviated as c.v.). The critical value can be determined by using a chi-square table. Before we can look up the value, we need to calculate the degrees of freedom. The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. Most of the time it is abbreviated as d.f. To calculate the value, we use equation \ref{eq:df}.
 
 \begin{equation}\label{eq:df}
 d.f. = n - 1
@@ -31,7 +31,7 @@ For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all th
     \csvreader[head to column names, separator=semicolon]{chi-square.csv}{}% use head of csv as column names
     {\\\hline\csvcoli&\a&\e&\f&\h}% specify your coloumns here
 \end{tabular}
-\captionof{table}{Chi-square critical values.}\label{table:chisquare}
+\captionof{table}{Chi-square critical values. \cite{chisquareTable} }\label{table:chisquare}
 
 \begin{tikzpicture}
 \begin{axis}[grid=both, xtick={0,2,...,20}, ytick={0,0.02,...,0.18}, compat=newest, xlabel=$x$, xlabel style={at={(1,0)}, anchor=west}, ylabel=$pdf f(x)$, ylabel style={rotate=-90,at={(0,1)}, anchor=south}]
@@ -48,7 +48,7 @@ For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all th
 
 In figure \ref{fig:chisquare} we have drawn the line of degrees of freedom and have marked the rejection region, H\textsubscript{0}, based on the critical value.
 
-Now we can calculate the chi-square. The formula for calculating the chi-square is given in \ref{eq:chisquare}, where \textbf{O} is the observed value and \textbf{E} the expected value. By summing all values, we get our test statistic value.
+Now we can calculate the chi-square. The formula for calculating the chi-square is given in equation \ref{eq:chisquare}, where \textbf{O} is the observed value and \textbf{E} the expected value. By summing all values, we get our test statistic value.
 
 \begin{equation}\label{eq:chisquare}
 {\chi}^2=\sum\frac{(O - E)^2}{E}
