@@ -1,11 +1,13 @@
-(Meaning of your results w.r.t. others)
-Avoid vague subjective statements (like I find .., or .... highly significant...., etc.)
-Rather use "The figure shows ...."
+All the circuits of 2017 are listed in table \ref{table:results}, with the corresponding data. The last column shows the amount of crashes, computed by the simulations. The number of crashes seems divided equally over the circuits. This is in line with the real-world amount of crashes this season so far.
 
-%%%%%%%
+Figure \ref{fig:results1} shows an almost horizontal line in the distance that is being used to brake before the turn. This indicates that the amount of metres that is shown on the track by brake-pads/distance indicators, seems right and doesn't affect the amount of crashes.
 
-MC traffic simulation, \url{https://link.springer.com/article/10.1007/s11709-009-0032-3}
-Nagel Schrekenberg, traffic simulation?
-\url{https://people.sc.fsu.edu/~jburkardt/classes/isc_2009/monte_carlo_simulation.pdf}
+According to figure \ref{fig:results2}, we see that the number of crashes increase when the distance of a turn calculated from start rises. There are numerous causes for this, high speed could be one.
 
-Sort of something we do? Except we want to crash.. and these model try to avoid collision..
+The higher the speed that could be maintained in a turn, the lower the number of crashes, Figure \ref{fig:results3} describes. This can be explained by the descreased brake time for a car, which doesn't cause head-tail collisions anymore.
+
+The combined results show that the amount of crashes varies among speeds and (brake) distances, but no hard correlation can be found. E.g. when a turn is far away from the start, but needs a low speed, with long braking distance, it could have the same outcome as when this turn is right after start. This tells us that we find no hard (safety) reasons why the FIA prefers to have a turn at least 250 metres.
+
+By improving the model, with futher research, and adding extra conditions like driver response times, width's of the corners and weather circumstances, it might be possible to find correlations. Also, a better model for acceleration can be used, where it's now linear. Also it might be a good idea to improve the study on for example all crashes on one certain circuit, and extend that, instead of trying to compare all circuits at once.
+
+Our research set a step beyond the well-known traffic model and tries to simulate under harder conditions. This attempt wasn't perfect but indicates on which points better results can be achieved.

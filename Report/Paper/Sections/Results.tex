@@ -25,16 +25,15 @@ Singapore  & L-L       & 274    &50     &126   &8724\\
 UAE        & L-R       & 305    &50     &150   &9449\\
 USA        & L-R       & 364    &100    &86    &8217\\
 \end{tabularx}
-\captionof{table}{Overview of grand prix, with circuit data. 'Turn' column defines sides, left or right for both the first turn and the pole position.}\label{table:results}\\
-
-All the circuits are listed in table \ref{table:results}, with all the necessary data. In the last column we can see the numbers of crashes based om our simulation model. The number of crashes seems divided equally for most of the circuits. Some of them have significant lower crashes, e.g. Austria, with only 673 crashes.
+\captionof{table}{Overview of grand prix, with circuit data. Column 'turn' defines sides, left or right, for both the first turn and the pole position.}\label{table:results}\\
 
 \begin{tikzpicture}
 \begin{axis}[
-  title={brake distance, crashes},
-  xlabel={brake distance},
+  title={'Brake-distance' vs crashes},
+  xlabel={distance till turn, metres},
   ylabel={crashes},
   ymajorgrids=true,
+  xmajorgrids=true,
   grid style=dashed,
 ]
 \addplot[ only marks ]
@@ -62,16 +61,16 @@ All the circuits are listed in table \ref{table:results}, with all the necessary
    };
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Crashes on scale of brake distance}\label{fig:results1}
+\captionof{figure}{Distance in metres before a turn that is used on average to brake before turn one to achieve the right speed, plotted against the amount of crashes.}\label{fig:results1}
 
-In figure \ref{fig:results1} every single dot means the numbers of crashes based on the brake distance. In this figure we see a stable trend. It seems that the brake distance doesn't affect the number of crashes.
-
+\medskip
 \begin{tikzpicture}
 \begin{axis}[
-  title={distance, crashes},
-  xlabel={distance},
+  title={Turn distance vs crashes},
+  xlabel={distance, metres},
   ylabel={crashes},
   ymajorgrids=true,
+  xmajorgrids=true,
   grid style=dashed,
 ]
 \addplot[ only marks ]
@@ -100,16 +99,15 @@ In figure \ref{fig:results1} every single dot means the numbers of crashes based
   };
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Crashes on scale of turn distance}\label{fig:results2}
-
-According to figure \ref{fig:results2}, we see that the number of crashes increase when the distance rises. There are numerous causes for this, high speed could be one.
+\captionof{figure}{Distance in metres calculated from start-line till first turn, plotted against the amount of crashes.}\label{fig:results2}
 
 \begin{tikzpicture}
 \begin{axis}[
-  title={speed, crashes},
-  xlabel={speed},
+  title={Turn speed vs crashes},
+  xlabel={speed in km/h},
   ylabel={crashes},
   ymajorgrids=true,
+  xmajorgrids=true,
   grid style=dashed,
 ]
 \addplot[ only marks ]
@@ -138,7 +136,4 @@ According to figure \ref{fig:results2}, we see that the number of crashes increa
   };
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Crashes on scale of turn speed}\label{fig:results3}
-
-When a driver can take a turn without braking much, the number of crashes will decrease. Figure \ref{fig:results3}
-is a nice description of this behaviour and it seems logical. Imagine that you have a large turn coming ahead, then you and the drivers in front of you don't have to brake suddenly.
+\captionof{figure}{Maximum speed that should be driven in turn to achieve best result, plotted against crashes.}\label{fig:results3}
