@@ -14,6 +14,10 @@
 \usepackage{csvsimple}
 \usepackage{caption}
 
+\usepackage{url}
+\urlstyle{same}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+
 \usepackage[style=numeric,backend=biber]{biblatex}
 \addbibresource{ref.bib}
 
@@ -33,7 +37,6 @@
 		\input{Sections/calculations.tex}
     \section{Incidents}
 		\input{Sections/incidents.tex}
-    \nocite{*}
 		\printbibliography
 	\end{multicols*}
 \end{document}
