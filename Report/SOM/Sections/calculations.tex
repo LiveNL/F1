@@ -1,0 +1,62 @@
+Example calculation, results in a negative number in case of braking: \\
+\line(1.0){450} \\
+
+% 100 kph, use 3.6 to convert to ms
+\DIVIDE{100}{3.6}{\msa}
+v = $\frac{100kph}{3.6}=\msa ms$\\
+
+% 2.6 s, time needed for 0-100
+\def\time{2.6}
+\DIVIDE{\msa}{\time}{\aa}
+a = $\frac{\Delta v}{\Delta t} = \frac{\msa}{\time} = \aa ms^2$\\
+
+% calculate distance for calculated acceleration and time
+\SQUARE{\time}{\square}
+\MULTIPLY{\aa}{\square}{\tmp}
+\MULTIPLY{0.5}{\tmp}{\ma}
+s = $\frac{1}{2} at^2 = \frac{1}{2} * \aa * \time^2 = \ma m $\\
+
+% distance per second, linear accelerated
+\DIVIDE{\ma}{\time}{\lms}
+$\ma m / \time s = \lms m/s$\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DIVIDE{200}{3.6}{\msb}
+\def\time{2.6}
+\SUBTRACT{\msb}{\msa}{\s}
+\DIVIDE{\s}{\time}{\ab}
+\SQUARE{\time}{\square}
+\MULTIPLY{\ab}{\square}{\tmp}
+\MULTIPLY{0.5}{\tmp}{\mb}
+\DIVIDE{\mb}{\time}{\lms}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\DIVIDE{300}{3.6}{\msc}
+\def\time{5.4}
+\SUBTRACT{\msc}{\msb}{\s}
+\DIVIDE{\s}{\time}{\ac}
+\SQUARE{\time}{\square}
+\MULTIPLY{\ac}{\square}{\tmp}
+\MULTIPLY{0.5}{\tmp}{\mc}
+\DIVIDE{\mc}{\time}{\lms}
+
+\noindent
+\begin{tabular}{l l l l l}
+kph & time (s) & interval (s) & a (ms^2) & distance (1s)\\
+ \hline
+ 0-100 & 2.6 & 2.6 & \aa & \ma \\
+ 0-200 & 5.2 & 2.6 & \ab & \mb \\
+ 0-300 & 10.6 & 5.4 & \ac & \mc \\
+\end{tabular} \\
+
+\begin{tabular}{lll}
+ name & time (s) & a (ms^2)\\
+ \hline
+ Ferrari & 2.48 & 11.20071 \\
+ Mercedes & 2.48 & 11.20071 \\
+ Mercedes & 2.68 & 10.36484 \\
+ McLaren & 2.8 & 9.92063 \\
+ RedBull & 2.84 & 9.78090 \\
+\end{tabular} \\
+
+source: https://www.youtube.com/watch?v=plMtLdCjAI
+\noindent
