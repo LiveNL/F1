@@ -1,8 +1,6 @@
-Can we really test a random number generator? It is a question that will quite often result in a negative answer. However, it is possible. In this supplementary online material, we will describe the method we used to determine the outcome of our random number generator.
+This supplementary online material will describe a method to determine if a random number generator distributes the random numbers in a fair manner. Using a statistical method, we can prove it. However even if you use a good die or a random number generator, each possible sequence is equally likely to appear. That means that a good random number generator might also produce sequences that look nonrandom and still fail any statistical test, but actually are random. It depends on the number of samples (or die rolls), because it is prossible that the random number generator produces series of multiple same numbers in a row.
 
-To determine if the random number generator distributes the random numbers in a fair manner, we will need a statistical method. Since that is in our knowledge the only way. Probably it sounds weird, how is it possible to determine if the random numbers are really random? Even if you use a good die or a random number generator, each possible sequence is equally likely to appear. That means that a good random number generator might also produce sequences that look nonrandom and still fail any statistical test, but actually are random. It depends a little bit on the number of samples (or die rolls), because it is prossible that the random number generator produces series of multiple same numbers in a row.
-
-One of the possible methods to statistical determine if the distributed random numbers are really random, we will use the hypothesis chi-square (${\chi}^2$) method \cite{chisquareRandom} \cite{chisquare}. This method follows some steps:
+One of the possible methods to statistical determine if the distributed random numbers are really random, is the hypothesis chi-square (${\chi}^2$) method \cite{chisquareRandom} \cite{chisquare}. This method follows some steps:
 
 \begin{enumerate}
 	\itemsep0em
@@ -12,7 +10,6 @@ One of the possible methods to statistical determine if the distributed random n
 	\item Find test statistic
 	\item Draw your conclusion
 \end{enumerate}
-
 
 First, we will start with an example, in this example we will use the chi-square method to determine if a die from a random casino is a fair die. Since we assume that the die is fair, we can state our \textbf{H\textsubscript{0}} hypothesis: the used die is a fair die. On the other hand, the alternative hypothesis, \textbf{H\textsubscript{1}}, will be: the used die is not a fair die.
 
@@ -24,7 +21,7 @@ After choosing the level of significance, it is time to determine the critical v
 d.f. = n - 1
 \end{equation}
 
-For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all the necessary values are now known, we can use table \ref{table:chisquare} to find our critical value. Which will be \textbf{11.07}, according to the given table.\\
+For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all the necessary values are now known, we can use table \ref{table:chisquare} to find our critical value. Which will be \textbf{11.07}.\\
 
 \begin{tabular}{l|l|l|l|l|l|l|l|l}
     \bfseries d.f. & \bfseries ${\chi}^2\textsubscript{0.99}$ & \bfseries ${\chi}^2\textsubscript{0.1}$ & \bfseries ${\chi}^2\textsubscript{0.05}$ & \bfseries ${\chi}^2\textsubscript{0.001}$% specify table head
@@ -64,4 +61,3 @@ The last step in the process is drawing a conclusion. When the test statistic va
 \captionof{table}{Die rolls, 204 times.}\label{table:expobssquare}
 
 Based on the observed and expected data as shown in table \ref{table:expobssquare}, we can calulate the chi-square and will find a sum of \textbf{15.29}. This value is larger than the \textbf{11.07}, so we can reject our H\textsubscript{0} hypothesis and accept H\textsubscript{1}. Therefore the used die is not a fair die.
-

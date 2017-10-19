@@ -14,15 +14,13 @@ As long as the point of where a car should brake isn't reached, the car accelera
 
 When the 'braking zone' is (nearly) reached, the negative acceleration (2) is being calculated with the current speed of the car and the metres that are needed to brake for this turn on average \cite{som}.
 
-Next to improving the distance driven, there will be attempted to move to an optimal position on the track (4). What's optimal for a car at a certain moment differs. Ideally, if a car is faster than the car in front of him, it will try to take over. Take overs will be done with the "optimal row"* in consideration.
+Next to improving the distance driven, there will be attempted to move to an optimal position on the track (4). What's optimal for a car at a certain moment differs. Ideally, if a car is faster than the car in front of him, it will try to take over. Take overs will be done with the "optimal row"\footnote{The opposite side of the turn is considered as being optimal. By driving there, you could maintain the top speed/accelerate as long as possible.} in consideration.
 
 When a car is in front of another car which is considered faster, it will try to defend its position by moving towards the row the car in the back is driving, in order to 'block' it.
 
 Driving into the braking zone also means that an optimal position should be chosen to drive into the turn.
 
 Sometimes when a car is faster, has the plan to defend or to improve its position, other cars are blocking this, or the car needs to go off the track to obtain the result. In this case the current position on track will be maintained.
-
-*The opposite side of the turn is considered as being optimal. By driving there, you could maintain the top speed/accelerate as long as possible.
 
 \subsection{Crashes}
 Checks for crash occurences will be executed till the second in which the car has passed the point of the first turn.
