@@ -1,39 +1,39 @@
-The results are based on simulations which are ran 10,000 times for each track. The total sum of crashes is 121,747.
+The results are based on simulations which are ran 10,000 times for each track. The total sum of crashes is 121,747.\\
 
-\begin{tabularx}{.50\textwidth}{Xlllll}
+\noindent
+\begin{tabularx}{.49\textwidth}{Xlllll}
 country    & turn &mtr&brake  &speed &crashes\\
 \hline
 Australia  & R-L       & 381    &100    &150   &7837\\
-China      & R-L       & 324.7  &50     &170   &7664\\
+Austria    & R-L       & 318    &200    &122   &673\\
+Azerbaijan & L-R       & 206    &50     &116   &7926\\
 Bahrain    & R-L       & 476.4  &100    &70    &7792\\
+Belgium    & R-L       & 251    &150    &77    &2887\\
+Brazil     & L-R       & 334    &50     &109   &5129\\
+Canada     & R-L       & 258    &125    &154   &6334\\
+China      & R-L       & 324.7  &50     &170   &7664\\
+GBR        & R-L       & 270    &-      &281   &991\\
+Hungary    & R-L       & 576    &100    &85    &7550\\
+Italy      & R-L       & 615    &125    &80    &7393\\
+Japan      & R-L       & 373    &10     &152   &1262\\
+Malaysia   & R-L       & 620    &100    &74    &8849\\
+Monaco     & R-R       & 111    &75     &103   &7477\\
 Russia     & R-R       & 205.2  &-      &300   &2103\\
 Spain      & R-L       & 690.5  &100    &130   &7211\\
-Monaco     & R-R       & 111    &75     &103   &7477\\
-Canada     & R-L       & 258    &125    &154   &6334\\
-Azerbaijan & L-R       & 206    &50     &116   &7926\\
-Austria    & R-L       & 318    &200    &122   &673\\
-GB         & R-L       & 270    &-      &281   &991\\
-Hungary    & R-L       & 576    &100    &85    &7550\\
-Belgium    & R-L       & 251    &150    &77    &2887\\
-Italy      & R-L       & 615    &125    &80    &7393\\
-Singapore  & L-L       & 274    &50     &126   &8724\\
-Malaysia   & R-L       & 620    &100    &74    &8849\\
-Japan      & R-L       & 373    &10     &152   &1262\\
-USA        & L-R       & 364    &100    &86    &8217\\
 Mexico     & R-L       & 890    &200    &107   &6279\\
-Brazil     & L-R       & 334    &50     &109   &5129\\
+Singapore  & L-L       & 274    &50     &126   &8724\\
 UAE        & L-R       & 305    &50     &150   &9449\\
+USA        & L-R       & 364    &100    &86    &8217\\
 \end{tabularx}
 \captionof{table}{Overview of grand prix, with circuit data.}\label{table:results}
 
-All the circuits are listed in table \ref{table:results}, with all the necessary data. In the last column we can see the numbers of crashes based om our simulation model. The number of crashes seems divided equally for most of the circuits. Some of them have significant lower crashes, e.g. Austria, with only 673 crashes.
-
 \begin{tikzpicture}
 \begin{axis}[
-  title={brake distance, crashes},
-  xlabel={brake distance},
+  title={'Brake-distance' vs crashes},
+  xlabel={distance till turn, metres},
   ylabel={crashes},
   ymajorgrids=true,
+  xmajorgrids=true,
   grid style=dashed,
 ]
 \addplot[ only marks ]
@@ -61,16 +61,15 @@ All the circuits are listed in table \ref{table:results}, with all the necessary
    };
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Crashes on scale of brake distance}\label{fig:results1}
-
-In figure \ref{fig:results1} every single dot means the numbers of crashes based on the brake distance. In this figure we see a stable trend. It seems that the brake distance doesn't affect the number of crashes.
+\captionof{figure}{Distance in metres before a turn that is used on average to brake before turn one to achieve the right speed, plotted against the amount of crashes.}\label{fig:results1}
 
 \begin{tikzpicture}
 \begin{axis}[
-  title={distance, crashes},
-  xlabel={distance},
+  title={Turn distance vs crashes},
+  xlabel={distance, metres},
   ylabel={crashes},
   ymajorgrids=true,
+  xmajorgrids=true,
   grid style=dashed,
 ]
 \addplot[ only marks ]
@@ -99,16 +98,15 @@ In figure \ref{fig:results1} every single dot means the numbers of crashes based
   };
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Crashes on scale of turn distance}\label{fig:results2}
-
-According to figure \ref{fig:results2}, we see that the number of crashes increase when the distance rises. There are numerous causes for this, high speed could be one.
+\captionof{figure}{Distance in metres calculated from start-line till first turn, plotted against the amount of crashes.}\label{fig:results2}
 
 \begin{tikzpicture}
 \begin{axis}[
-  title={speed, crashes},
-  xlabel={speed},
+  title={Turn speed vs crashes},
+  xlabel={speed in km/h},
   ylabel={crashes},
   ymajorgrids=true,
+  xmajorgrids=true,
   grid style=dashed,
 ]
 \addplot[ only marks ]
@@ -137,7 +135,4 @@ According to figure \ref{fig:results2}, we see that the number of crashes increa
   };
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{Crashes on scale of turn speed}\label{fig:results3}
-
-When a driver can take a turn without braking much, the number of crashes will decrease. Figure \ref{fig:results3}
-is a nice description of this behaviour and it seems logical. Imagine that you have a large turn coming ahead, then you and the drivers in front of you don't have to brake suddenly.
+\captionof{figure}{Maximum speed that should be driven in turn to achieve best result, plotted against crashes.}\label{fig:results3}

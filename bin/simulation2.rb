@@ -19,15 +19,15 @@ def cars
   @cars_list.sample
 end
 
-#circuit = circuits[:circuits].find{|x| x[:country] == "UAE"}
-#a = MultiJson.load cars.read, symbolize_keys: true
-#Race.new(circuit_json: circuit, cars_json: a, x: nil, rng: rng).start
-#exit
+circuit = circuits[:circuits].find{|x| x[:country] == "Extra"}
+a = MultiJson.load cars.read, symbolize_keys: true
+Race.new(circuit_json: circuit, cars_json: a, x: nil, rng: rng).start
+exit
 
 circuits[:circuits].map.with_index do |circuit, i|
   puts "#{i}: #{circuit[:country]}"
 
-  100.times do |x|
+  10000.times do |x|
     a = MultiJson.load cars.read, symbolize_keys: true
     Race.new(circuit_json: circuit, cars_json: a, x: x, rng: rng).start
   end

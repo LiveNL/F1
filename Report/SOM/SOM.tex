@@ -1,4 +1,7 @@
 \documentclass[12pt]{article}
+\usepackage{amsmath}
+\usepackage{calculator}
+\usepackage{tabularx}
 
 \usepackage{multicol}
 \usepackage[textwidth=528pt]{geometry}
@@ -11,21 +14,30 @@
 \usepackage{csvsimple}
 \usepackage{caption}
 
+\usepackage{url}
+\urlstyle{same}
+\usepackage[hyphens,spaces,obeyspaces]{url}
+
 \usepackage[style=numeric,backend=biber]{biblatex}
 \addbibresource{ref.bib}
 
-	\title{\textbf{Chi-square, RNG hypothesis testing}}
+	\title{\textbf{Supplementary Online Material}}
 	\date{\today}
-	\author{Kevin Wilbrink (6310621) and Jordi Wippert ()}
+	\author{Kevin Wilbrink (6310621) and Jordi Wippert (6303013)}
 
 \begin{document}
 	\maketitle
 
 	\begin{multicols*}{2}
-		\section{Example}
+		\section{RNG test with Chi-Square}
 		\input{Sections/Example.tex}
-		\section{Our test case}
+		\section{Ruby random number generator}
 		\input{Sections/OurCase.tex}
+    \columnbreak
+    \section{Acceleration and brake calculations}
+		\input{Sections/calculations.tex}
+    \section{Incidents}
+		\input{Sections/incidents.tex}
 		\printbibliography
 	\end{multicols*}
 \end{document}

@@ -1,29 +1,28 @@
 \documentclass[12pt]{article}
 
+\usepackage{url}
+\urlstyle{same}
+\usepackage[hyphens,spaces,obeyspaces]{url}
 \usepackage{tabularx}
 \usepackage{pgfplots}
 \pgfplotsset{compat=1.14}
-\usepackage{pgfplotstable}
 \usepackage{multicol}
-\usepackage[textwidth=528pt]{geometry}
 \usepackage{caption}
-%\usepackage{hyperref}
+\usepackage{pgfplotstable}
 \usepackage[style=numeric,backend=biber]{biblatex}
 \addbibresource{ref.bib}
+\usepackage[textwidth=528pt]{geometry}
 \nocite{*}
 
-	\title{\textbf{Formula 1 accident calculations via Monte Carlo on first straight + turn}}
+	\title{\textbf{Simulating Formula 1 crashes in the start-section including the first turn}}
 	\date{\today}
-	\author{Kevin Wilbrink (6310621) and Jordi Wippert ()}
+	\author{Kevin Wilbrink (6310621) and Jordi Wippert (6303013)}
 
 \begin{document}
 	\maketitle
 
 	\begin{multicols*}{2}
-		\begin{abstract}
-			\textbf{\input{Sections/Abstract.tex}}
-		\end{abstract}
-		
+		\textbf{\input{Sections/Abstract.tex}}
 
 		\section{Introduction}
 		\input{Sections/Introduction.tex}
@@ -34,11 +33,8 @@
 		\section{Results}
 		\input{Sections/Results.tex}
 
-		\section{Discussion}
+    \section{Discussion \& conclusion}
 		\input{Sections/Discussion.tex}
-
-		\section{Conclusion}
-		\input{Sections/Conclusion.tex}
 
 		\section*{Appendix}
 		\input{Sections/Appendix.tex}
@@ -46,7 +42,6 @@
 		\section*{Acknowledgements}
 		\input{Sections/Acknowledgements.tex}
 
-		%\section*{References}
 		\input{Sections/References.tex}
 	\end{multicols*}
 \end{document}
