@@ -4,18 +4,18 @@ One of the possible methods to statistically determine if the random numbers are
 
 \begin{enumerate}
 	\itemsep0em
-	\item State null (H\textsubscript{0}) and alternative (H\textsubscript{1}) hypothesis
-	\item Choose level of significance ($\alpha$)
-	\item Find critical values
-	\item Find test statistic
-	\item Draw your conclusion
+	\item State null (H\textsubscript{0}) and alternative (H\textsubscript{1}) hypothesis.
+	\item Choose level of significance ($\alpha$).
+	\item Find critical values.
+	\item Find test statistic.
+	\item Draw your conclusion.
 \end{enumerate}
 
 Starting with an example, we'll use the Chi-Square method to determine if a random die can be considered as fair. Since we expect that the die is fair, we can state our \textbf{H\textsubscript{0}} hypothesis: the used die is a fair die. On the other hand, the alternative hypothesis, \textbf{H\textsubscript{1}}, will be: the used die is not a fair die.
 
-The next step is to choose the level of significance. The level of significance, the Greek letter $\alpha$, is the probability of rejecting the null hypothesis, H\textsubscript{0}. A significance level of 0,05 means a 5\% risk of concluding that a difference exists when there is not an actual difference. The level of 0,05 is quite often chosen for many applications and we will use this number for our example.
+The next step is to choose the level of significance. The level of significance, the Greek letter $\alpha$, is the probability of rejecting the null hypothesis, H\textsubscript{0}. A significance level of 0.05 means a 5\% risk of concluding that a difference exists when there is not an actual difference. The level of 0.05 is quite often chosen for many applications and we will use this number for our example.
 
-After choosing the level of significance, a critical value (abbreviated as c.v.) should be determined. This can be done by using a chi-square table. This requires the look of a value corresponding a degrees of freedom. The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. Most of the time it is abbreviated as d.f. To calculate the value, we use equation \ref{eq:df}.
+After choosing the level of significance, a critical value (abbreviated as c.v.) should be determined. This can be done by using a Chi-Square table. This requires the look up of a value corresponding a degrees of freedom. The number of degrees of freedom is the number of values in the final calculation of a statistic that are free to vary. Most of the time it is abbreviated as d.f.. To calculate the value, we use equation \ref{eq:df}.
 
 \begin{equation}\label{eq:df}
 d.f. = n - 1
@@ -42,12 +42,12 @@ For a die, this would result in \(n = 6\) and \(d.f. = 6 - 1 = 5\). Since all th
 \addlegendentry{Reject H\textsubscript{0}};
 \end{axis}
 \end{tikzpicture}
-\captionof{figure}{The ${\chi}^2$ (chi-square) distribution.}\label{fig:chisquare}
+\captionof{figure}{The ${\chi}^2$ (Chi-Square) distribution.}\label{fig:chisquare}
 \smallskip
 
 In figure \ref{fig:chisquare} we have drawn the line of degrees of freedom and have marked the rejection region, H\textsubscript{0}, based on the critical value.
 
-Now we can calculate the chi-square. The formula for calculating the chi-square is given in equation \ref{eq:chisquare}, where \textbf{O} is the observed value and \textbf{E} the expected value. By summing all values, we get the statistic value.
+Now we can calculate the Chi-Square. The formula for calculating the Chi-Square is given in equation \ref{eq:chisquare}, where \textbf{O} is the observed value and \textbf{E} the expected value. By summing all values, we get the statistic value.
 
 \begin{equation}\label{eq:chisquare}
 {\chi}^2=\sum\frac{(O - E)^2}{E}
@@ -64,4 +64,4 @@ The last step in the process is drawing a conclusion. When the test statistic va
 \captionof{table}{Die rolls, 204 times.}\label{table:expobssquare}
 
 \smallskip
-Based on the observed and expected data as shown in table \ref{table:expobssquare}, we can calulate the chi-square and will find a sum of \textbf{15.29}. This value is larger than the \textbf{11.07}, so we can reject our H\textsubscript{0} hypothesis and accept H\textsubscript{1}. Therefore the used die is not a fair die.
+Based on the observed and expected data as shown in table \ref{table:expobssquare}, we can calulate the Chi-Square and will find a sum of \textbf{15.29}. This value is larger than the \textbf{11.07}, so we can reject our H\textsubscript{0} hypothesis and accept H\textsubscript{1}. Therefore the used die is not a fair die.
