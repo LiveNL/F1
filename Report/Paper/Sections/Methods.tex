@@ -13,14 +13,14 @@ To mimic the real world, behaviour of drivers/cars is based on the four steps us
 \smallskip
 As long as the point of where a car should brake isn't reached, the car accelerates (1). The numbers being used to calculate the amount of metres that is added every second, are based on a few cars \cite{som}, and define the range for all cars.
 
-When the 'braking zone' is (nearly) reached, the negative acceleration (2) is being calculated. The number is based on the currend speed of the car together with the maximum speed that can be driven in the turn. This speed diminution will be devided over the amount of metres that's left for the turn.\cite{som}.
+When the 'braking zone' is (nearly) reached, the negative acceleration (2) is being calculated. The number is based on the current speed of the car together with the maximum speed that can be driven in the turn. This speed diminution will be devided over the amount of metres that's left for the turn.\cite{som}.
 
 \begin{figure}[H]
 \includegraphics[width=7cm]{f1start-01}
 \caption{Model used for representation of circuits}
 \end{figure}
 
-Next to improving the distance driven, there will be attempted to move to an optimal position on the track (4). What's optimal for a car at a certain moment differs. Ideally, if a car is faster than the car in front, it will try to take over. Take overs will be done with the 'optimal row' \footnote{The opposite side of the turn is considered as being optimal. By driving there, you could maintain the top speed/accelerate as long as possible.} in consideration.
+Next to improving the distance driven, the driver will attempt to move to an optimal position on the track (4). What's optimal for a car at a certain moment differs. Ideally, if a car is faster than the car in front, it will try to overtake. Overtakes will be done with the 'optimal row' \footnote{The opposite side of the turn is considered as being optimal. By driving there, you could maintain the top speed/accelerate as long as possible.} in consideration.
 
 When a car is in front of another car which is considered faster, it will try to defend its position by moving towards the row the car in the back is driving, in order to 'block' it.
 
