@@ -1,0 +1,20 @@
+- Titel pagina
+Voorstellen, onderzoeksmethoden
+
+- Content
+Waar gaan we het vandaag over hebben?
+
+- Introduction
+Formula 1 crashes, kijken of we de baan veiliger kunnen maken a.d.h.v. MC simulations en traffic model van Nagel-Schreckenberg
+
+- Methods
+Model gebaseerd op Nagel-Schreckenberg, met een groot verschil dat in ons model wel botsingen kunnen plaats vinden. Dit is met de standaard Nagel-Schreckenberg niet mogelijk.
+De vier stappen van het proces uitleggen en aanwijzen op de plaatjes.
+
+- Results
+Vele tests gedaan voor elk circuit. Groote aantal crashes, ongeveer 50% van het totale aantal. De crashes zijn ook vrijwel voor elke baan evenreeds verdeeld
+Drie figuren bespreken.
+
+- Discussion & conclussion
+Simulation uitgevoerd op alle circuits van 2017, zoals al eerder vermeld zijn de crashes equally divided.
+Dit beeld komt overeen met de real-world scenario. Tijdens dit onderzoek is er geen duidelijke factor naar voren gekomen. Het lijkt erop dat de crashes random plaats vinden. Met further research kan het model uitgebreid worden om beter aan te sluiten op de realiteit. Denk hierbij aan weersomstandigheden, niet-linear accelereren, scherpte van een bocht etc.
